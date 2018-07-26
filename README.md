@@ -11,3 +11,13 @@ Engine Run Test 2 (build 4)
 - Enhanced LibMGR stability
 
 Engine Run Test 3 WIP
+- Added command: list
+- Added command: fs
+- Added command: delete
+- Added command: fasthelp
+- Add command: help
+- Added command: write
+- Added command: read
+- Added input indicator: >
+- Added unknown command error output
+- Repair errors
