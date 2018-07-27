@@ -33,6 +33,3 @@ Test Beta 4 (build18B072826UD-TB4)
 - Updated File reader (Failure when user tried to read directory)
 - Added DeleteFolder
 - Added MakeDir
-
-Test Beta 5 (build 18B072847UD-TB5)
-- Patched custom boot hash causing E:47
