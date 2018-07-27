@@ -25,6 +25,11 @@ Test Beta 3 (build 18B072742UD-TB3)
 - Added unknown command error output
 - Repair errors
 
-Test Beta 4 (Working in Progress)
-- Add command: reboot
-- Add command: reload
+Test Beta 4 (build18B072826UD-TB4)
+- Added command: reboot
+- Added command: cd
+- Added command: mkdir
+- Added command: delete -d
+- Updated File reader (Failure when user tried to read directory)
+- Added DeleteFolder
+- Added MakeDir
