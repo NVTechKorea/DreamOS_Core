@@ -36,3 +36,11 @@ Test Beta 4 (build18B072826UD-TB4)
 
 Test Beta 5 (build 18B072847UD-TB5)
 - Patched custom boot hash causing E:47
+
+Test Beta 6 (build 18B072967UD-TB6)
+- Patched root exploit when lock option is enabled
+- Patched signature writing variable link
+- Patched ReadFile class error
+- Patched skipping login when secure option is disabled
+- Patched displaying broken root lock option message as a broken signature check option.
+- Patched automatic login error
