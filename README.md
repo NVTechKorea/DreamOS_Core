@@ -44,3 +44,11 @@ Test Beta 6 (build 18B072967UD-TB6)
 - Patched skipping login when secure option is disabled
 - Patched displaying broken root lock option message as a broken signature check option.
 - Patched automatic login error
+
+Test Beta 7 (build 18B073127UD-TB7)
+- Patched deletable system directory (Permission patch)
+- Patched security exploit
+- Default boot hash is now the same as signature hash (Not null)
+- Started creating migration helper
+- Started creating safeOS
+- Started creating recoveryOS
