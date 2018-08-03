@@ -3,7 +3,36 @@
 베타버전은 컴파일링 되어있지 않은 .java 상태로 업로드됩니다.
 안정버전은 .jar 파일로 컴파일되어 업로드됩니다.
 
-개발 로그:
+*경고*
+Windows 에서는 Fusion Shield 가 정상적으로 작동하지 않는것으로 판단되었습니다.
+macOS 또는 Linux 에서 사용해주십시오.
+
+# 사용방법:
+명령어
+- cd [directory name]
+	- 디렉터리로 들어감
+- delete (-d) [target]
+	- -d 는 디렉터리 삭제, 없으면 파일을 삭제함
+- fasthelp
+	- 간단한 명령어 보기
+- fs [option]
+	- 실드의 옵션을 변경 (패스워드 변경 / 계정 삭제)
+- help
+	- 명령어 자세히 보기
+- list
+	- 현재 디렉터리에 있는 파일과 하위 디렉터리의 리스트를 봄
+- mkdir [name]
+	- 디렉터리를 만듬
+- read [file name]
+	- 파일을 읽음
+- reboot
+	- OS 재시작
+- shutdown
+	- OS 종료
+- write [file name] [contents]
+	- 파일 작성
+
+# 개발 로그:
 Engine Run Test 1 (build 0)
 - Initial commit
 
