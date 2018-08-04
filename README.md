@@ -11,6 +11,8 @@ macOS 또는 Linux 에서 사용해주십시오.
 명령어
 - cd [directory name]
 	- 디렉터리로 들어감
+- chpref [option name/all] [value]
+	- 옵션을 바꿈
 - delete (-d) [target]
 	- -d 는 디렉터리 삭제, 없으면 파일을 삭제함
 - fasthelp
@@ -27,6 +29,8 @@ macOS 또는 Linux 에서 사용해주십시오.
 	- 파일을 읽음
 - reboot
 	- OS 재시작
+- rdpref [option name/all]
+	- 옵션 읽기
 - shutdown
 	- OS 종료
 - write [file name] [contents]
