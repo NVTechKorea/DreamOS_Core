@@ -22,7 +22,7 @@ macOS 또는 Linux 에서 사용해주십시오.
 - list
 	- 현재 디렉터리에 있는 파일과 하위 디렉터리의 리스트를 봄
 - mkdir [name]
-	- 디렉터리를 만듬
+	- 디렉터리를 만듦
 - read [file name]
 	- 파일을 읽음
 - reboot
@@ -81,3 +81,16 @@ Test Beta 7 (build 18B073127UD-TB7)
 - Started creating migration helper
 - Started creating safeOS
 - Started creating recoveryOS
+
+Test Beta 8 (build 18B080552UD-TB8)
+- Modifications:
+	- Renamed recoveryOS and safeOS to deltaOS
+	- Added command: chpref
+	- Added command: rdpref
+- Stabilizations:
+	- Patched undeleteable directory error
+	- Patched recoveryOS compile error
+- Security enhancements:
+	- Patched security exploit
+	- Disabled modifying boot option via write command or chpref command
+	- Disabled reading boot option via read command or rdpref command
