@@ -10,32 +10,32 @@ macOS 또는 Linux 에서 사용해주십시오.
 # 사용방법:
 명령어
 - cd [directory name]
-- 디렉터리로 들어감
+  - 디렉터리로 들어감
 - chpref [option name/all] [value]
-- 옵션을 바꿈
+  - 옵션을 바꿈
 - delete (-d) [target]
-- -d 는 디렉터리 삭제, 없으면 파일을 삭제함
+  - -d 는 디렉터리 삭제, 없으면 파일을 삭제함
 - fasthelp
-- 간단한 명령어 보기
+  - 간단한 명령어 보기
 - fs [option]
-- 실드의 옵션을 변경 (패스워드 변경 / 계정 삭제)
+  - 실드의 옵션을 변경 (패스워드 변경 / 계정 삭제)
 - help
-- 명령어 자세히 보기
+  - 명령어 자세히 보기
 - list
-- 현재 디렉터리에 있는 파일과 하위 디렉터리의 리스트를 봄
+  - 현재 디렉터리에 있는 파일과 하위 디렉터리의 리스트를 봄
 - mkdir [name]
-- 디렉터리를 만듦
+  - 디렉터리를 만듦
 - read [file name]
-- 파일을 읽음
+  - 파일을 읽음
 - reboot
-- OS 재시작
+  - OS 재시작
 - resetencrypt
-- 파일 암호화 패스워드 변경
+  - 파일 암호화 패스워드 변경
 - rdpref [option name/all]
-- 옵션 읽기
+  - 옵션 읽기
 - shutdown
-- OS 종료
-- write [file name] [contents]
+  - OS 종료
+  - write [file name] [contents]
 - 파일 작성
 
 # 개발 로그:
@@ -90,32 +90,32 @@ Test Beta 7 (build 18B073127UD-TB7)
 
 Test Beta 8 (build 18B080552UD-TB8)
 - Modifications:
-- Renamed recoveryOS and safeOS to deltaOS
-- Added command: chpref
-- Added command: rdpref
+  - Renamed recoveryOS and safeOS to deltaOS
+  - Added command: chpref
+  - Added command: rdpref
 - Stabilizations:
-- Patched undeleteable directory error
-- Patched recoveryOS compile error
+  - Patched undeleteable directory error
+  - Patched recoveryOS compile error
 - Security enhancements:
-- Patched security exploit
-- Disabled modifying boot option via write command or chpref command
-- Disabled reading boot option via read command or rdpref command
+  - Patched security exploit
+  - Disabled modifying boot option via write command or chpref command
+  - Disabled reading boot option via read command or rdpref command
 
 Test Beta 9 (build 18B081594UD-TB9)
 - Modifications:
-- Added command: copy
-- Working in progress with Migration Helper. Do not execute!
-- Added Migration Helper
-- Working in progress... DO NOT TRY TO MIGRATE YET!
-- All files written in DreamOS_Core are encrypted with AES 256
-- Now in .jar file
+  - Added command: copy
+    - Working in progress with Migration Helper. Do not execute!
+  - Added Migration Helper
+    - Working in progress... DO NOT TRY TO MIGRATE YET!
+  - All files written in DreamOS_Core are encrypted with AES 256
+  - Now in .jar file
 - Stabilizations:
-- Patched writing command requiring space between name and contents
-- Patched read file failure
+  - Patched writing command requiring space between name and contents
+  - Patched read file failure
 - Security enhancements:
-- Patched booting with null boot hash
-- All files are encrypted with AES 256
+  - Patched booting with null boot hash
+  - All files are encrypted with AES 256
 - Known bugs:
-- [PANIC] Panic when access to file system in safeOS and recoveryOS after Core panic fall
-- [PANIC] Reading files in /storage/protection
-- [LOOP] When File Encryption Password is null or empty
+  - [PANIC] Panic when access to file system in safeOS and recoveryOS after Core panic fall
+  - [PANIC] Reading files in /storage/protection
+  - [LOOP] When File Encryption Password is null or empty
