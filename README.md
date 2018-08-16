@@ -38,6 +38,36 @@ macOS 또는 Linux 에서 사용해주십시오.
   - write [file name] [contents]
 - 파일 작성
 
+# 포함된 패키지
+- commons-codec-1.11
+- Main Launch Platform for DreamOS
+  - 하위 패키지
+    - Boot
+    - DeleteFile
+    - ErrorAnalyzer
+    - LibraryManager
+    - Main
+    - MakeDir
+    - OSReader
+    - Parser
+    - ReadFile
+    - Shield
+    - WriteFile
+- AES 256 Java code from http://aesencryption.net.
+  - 이 코드는 EncryptTool 로 명명되어 있습니다.
+- CopyFile
+- DeleteFolder
+- DeltaOS
+- DreamOS_Core
+- MigrationHelper
+
+
+# DreamProjectGroup 에서 개발되지 않은 패키지
+- commons-codec-1.11
+  - https://commons.apache.org/proper/commons-codec/download_codec.cgi
+- EncryptTool
+  - http://aesencryption.net
+
 # 개발 로그:
 Engine Run Test 1 (build 0)
 - Initial commit
