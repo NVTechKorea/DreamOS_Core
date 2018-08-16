@@ -7,6 +7,12 @@
 Windows 에서는 Fusion Shield 가 정상적으로 작동하지 않는것으로 판단되었습니다.
 macOS 또는 Linux 에서 사용해주십시오.
 
+# 의존 프로그램
+- Java Development Kit (Beta 8 이하)
+  - http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+- Java Runtime Environment (모든 버전 필수)
+  - http://java.com
+
 # 사용방법:
 명령어
 - cd [directory name]
