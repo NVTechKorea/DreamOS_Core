@@ -42,6 +42,6 @@ public class PostSignatureCheck_New {
 	public void showWarning(String warningMsg) {
 		JFrame warningFrame = new JFrame("Warning");
 		JOptionPane.showMessageDialog(warningFrame, warningMsg);
-		System.out.println("WARN [SIG]: " + warningMsg);
+		System.out.println("PostSignatureCheck [WARN]: " + warningMsg);
 	}
 }

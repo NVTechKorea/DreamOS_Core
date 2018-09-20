@@ -42,10 +42,10 @@ public class Shield{
 		}
 	}
 	public static void print(String s){
-		System.out.println("INFO [SHIELD]: " + s);
+		System.out.println("SHIELD [INFO]: " + s);
 	}
 	public static void error(String s){
-		System.out.println("ERROR [SHIELD]: " + s);
+		System.out.println("Shield [ERROR]: " + s);
 	}
 	public void initiate2(){
 		try{
@@ -246,7 +246,7 @@ public class Shield{
 		return res;
 	}
 	public static void warn(String s){
-		System.out.println("WARNING [SHIELD]: " + s);
+		System.out.println("Shield [WARN]: " + s);
 	}
 	public void chpw(){
 		Scanner input = new Scanner(System.in);

@@ -5,6 +5,7 @@ package CoreModules;
 // Copyright (C) Dream Project Group
 import CoreServices.ErrorAnalyzer;
 import java.io.*;
+import java.util.Scanner;
 public class ReadFile{
 	public ReadFile(){}
 	@SuppressWarnings("resource")
@@ -14,10 +15,10 @@ public class ReadFile{
 		try{
 			File dir = new File(path);
 			if(dir.isDirectory()){
-				System.out.println("ERROR [READER]: Requested argument is not a file; is a directory.");
+				System.out.println("READER [ERROR]: Requested argument is not a file; is a directory.");
 				data = " ";
 			}else if(!dir.exists()){
-				System.out.println("ERROR [READER]: Requested argument does not exist.");
+				System.out.println("READER [ERROR]: Requested argument does not exist.");
 				data = " ";
 			}else{
 				BufferedReader breader = null;
@@ -25,10 +26,21 @@ public class ReadFile{
 				data = breader.readLine();
 			}
 		}catch(Exception e){
-			System.out.println("ERROR [READER]");
+			System.out.println("READER [ERROR]");
 			ErrorAnalyzer ea = new ErrorAnalyzer();
 			ea.initiate(e, process, false);
 		}
 		return data;
 	}
+	 public boolean checkConnection(String process) {
+	    	System.out.println("READER [NOTIFY]: Process " + process + " is trying to access Read permission. Type yes to authorize, type n to reject.");
+	    	Scanner input = new Scanner(System.in);
+	    	String i = input.nextLine();
+	    	input.close();
+	    	if(i.equals("yes")) {
+	    		return true;
+	    	}else {
+	    		return false;
+	    	}
+	    }
 }

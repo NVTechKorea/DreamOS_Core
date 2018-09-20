@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -33,7 +34,7 @@ public class DownloadHelper {
 			}
 			input.close();
 			output.close();
-			System.out.println("INFO [DL]: Complete.");
+			System.out.println("DownloadHelper [INFO]: Complete");
 			if(process.equals("updateServer")) {
 				dialogBox("Download complete.", "Update Helper");
 			}
@@ -49,11 +50,11 @@ public class DownloadHelper {
 			}else if (process.equals("getUpdateInfo")){
 				JFrame warningFrame = new JFrame("Error");
 				JOptionPane.showMessageDialog(warningFrame, "Unable to establish connection between update server.");
-				System.out.println("ERROR [DL]: Unable to establish connection between update server.");
+				System.out.println("DownloadHelper [ERROR]: Unable to establish connection between update server.");
 			}else if (process.equals("updateServer")){
 				JFrame warningFrame = new JFrame("Error");
 				JOptionPane.showMessageDialog(warningFrame, "Unable to establish connection between update server.");
-				System.out.println("ERROR [DL]: Unable to establish connection between update server.");
+				System.out.println("DownloadHelper [ERROR]: Unable to establish connection between update server.");
 			}else {
 				ioEx.printStackTrace();
 				System.exit(0);
@@ -77,4 +78,15 @@ public class DownloadHelper {
 			System.exit(0);
 		}
 	}
+	public boolean checkConnection(String process) {
+	    	System.out.println("DownloadHelper [NOTIFY]: Process " + process + " is trying to access Writing/network permission. Type yes to authorize, type n to reject.");
+	    	Scanner input = new Scanner(System.in);
+	    	String i = input.nextLine();
+	    	input.close();
+	    	if(i.equals("yes")) {
+	    		return true;
+	    	}else {
+	    		return false;
+	    	}
+	    }
 }

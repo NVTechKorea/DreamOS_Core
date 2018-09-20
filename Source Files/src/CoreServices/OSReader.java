@@ -22,9 +22,9 @@ public class OSReader{
 		return data;
 	}
 	public static void error(String s){
-		System.out.println("Error [OSReader]: " + s);
+		System.out.println("OSReader [ERROR]: " + s);
 	}
 	public static void print(String s){
-		System.out.println("INFO [OSReader]: " + s);
+		System.out.println("OSReader [INFO]: " + s);
 	}
 }

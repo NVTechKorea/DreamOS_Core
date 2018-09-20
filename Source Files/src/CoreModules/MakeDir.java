@@ -4,6 +4,8 @@ package CoreModules;
 // Package Build: 18B080552UD-TB8
 // Copyright (C) Dream Project Group
 import java.io.*;
+import java.util.Scanner;
+
 import CoreServices.ErrorAnalyzer;
 public class MakeDir{
 	public MakeDir(){}
@@ -14,9 +16,20 @@ public class MakeDir{
 			file = new File(path);
 			file.mkdir();
 		}catch(Exception e){
-			System.out.println("ERROR [MAKEDIR]");
+			System.out.println("MAKEDIR [ERROR]");
 			ErrorAnalyzer ea = new ErrorAnalyzer();
 			ea.initiate(e, process, false);
 		}
 	}
+	 public boolean checkConnection(String process) {
+	    	System.out.println("MAKEDIR [NOTIFY]: Process " + process + " is trying to access Writing permission. Type yes to authorize, type n to reject.");
+	    	Scanner input = new Scanner(System.in);
+	    	String i = input.nextLine();
+	    	input.close();
+	    	if(i.equals("yes")) {
+	    		return true;
+	    	}else {
+	    		return false;
+	    	}
+	    }
 }

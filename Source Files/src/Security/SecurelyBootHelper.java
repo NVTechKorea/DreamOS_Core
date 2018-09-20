@@ -79,13 +79,13 @@ public class SecurelyBootHelper{
 		return res;
 	}
 	public static void print(String s){
-		System.out.println("INFO [SBH]: " + s);
+		System.out.println("SecureBootHelper [INFO]: " + s);
 	}
 	public static void brint(String s){
-		System.out.println("INFO [BOOT]: " + s);
+		System.out.println("Boot [ERROR]: " + s);
 	}
 	public static void berror(String s){
-		System.out.println("ERROR [BOOT]: " + s);
+		System.out.println("Boot [ERROR]: " + s);
 	}
 	public void endOS(){
 		print("Shutting down OS!");

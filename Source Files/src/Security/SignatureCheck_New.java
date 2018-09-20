@@ -74,7 +74,7 @@ public class SignatureCheck_New {
 	public void showWarning(String warningMsg) {
 		JFrame warningFrame = new JFrame("Error");
 		JOptionPane.showMessageDialog(warningFrame, warningMsg);
-		System.out.println("ERROR [SIG]: " + warningMsg);
+		System.out.println("SignatureCheck [ERROR]: " + warningMsg);
 		DeleteFile df = new DeleteFile();
 		df.initiate(signatureFileLoc, true);
 		df.initiate(var, true);
