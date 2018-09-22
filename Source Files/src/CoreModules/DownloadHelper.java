@@ -7,9 +7,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 public class DownloadHelper {
 	private String var = null;
 	public void copyURLToFile(URL url, File file, String process) {
@@ -34,36 +31,25 @@ public class DownloadHelper {
 			}
 			input.close();
 			output.close();
-			System.out.println("DownloadHelper [INFO]: Complete");
-			if(process.equals("updateServer")) {
-				dialogBox("Download complete.", "Update Helper");
-			}
+			System.out.println("DownloadHelper [INFO]: Download complete.");
 		} catch (IOException ioEx) {
+			System.out.println("DownloadHelper [ERROR]: File download failure.");
 			if(process.equals("verificationServer")) {
-				JFrame warningFrame = new JFrame("Error");
-				JOptionPane.showMessageDialog(warningFrame, "Unable to establish connection between verification server.");
-				System.out.println("ERROR [DL]: Unable to establish connection between verification server.");
+				System.out.println("DownloadHelper [ERROR]: Unable to establish connection between verification server.");
 				DeleteFile df = new DeleteFile();
 				df.initiate(var, true);
+				System.out.println("DownloadHelper [ERROR]: File to download: " + url);
 				System.exit(0);
 			}if(process.equals("verificationServer-post")) {
 			}else if (process.equals("getUpdateInfo")){
-				JFrame warningFrame = new JFrame("Error");
-				JOptionPane.showMessageDialog(warningFrame, "Unable to establish connection between update server.");
 				System.out.println("DownloadHelper [ERROR]: Unable to establish connection between update server.");
 			}else if (process.equals("updateServer")){
-				JFrame warningFrame = new JFrame("Error");
-				JOptionPane.showMessageDialog(warningFrame, "Unable to establish connection between update server.");
 				System.out.println("DownloadHelper [ERROR]: Unable to establish connection between update server.");
 			}else {
 				ioEx.printStackTrace();
 				System.exit(0);
 			}
 		}
-	}
-	public void dialogBox(String Msg, String title) {
-		String informationString = Msg;
-		JOptionPane.showMessageDialog(null, informationString, title, JOptionPane.PLAIN_MESSAGE);
 	}
 	public void regvar(String vvar) {
 		var = vvar;

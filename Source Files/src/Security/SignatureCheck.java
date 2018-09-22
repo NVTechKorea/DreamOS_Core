@@ -1,35 +1,36 @@
 package Security;
 
 import CoreModules.ReadFile;
+import CoreServices.InfoServer;
 import CoreModules.DeleteFile;
 import CoreModules.DownloadHelper;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import java.io.File;
 
-public class SignatureCheck_New {
+public class SignatureCheck {
 	private String signatureFileLoc = null;
 	private String signatureFileLink = null;
-	private String ver = "1.7";
+	private String ver = null;
 	private String var = null;
-
-	public SignatureCheck_New() {
+	InfoServer infod = new InfoServer();
+	public SignatureCheck() {
+		double version = infod.getVersionInDouble();
+		ver = version + "0";
 	}
-
-	public void regvar(String path, String vvar) {
+	public void regvar() {
+		String path = infod.getCertainPath("var");
 		signatureFileLoc = path + "SignatureFile.signdoc";
-		var = vvar;
-		signatureFileLink = "https://raw.githubusercontent.com/NVTechKorea/MessageEncryptor/master/VerificationData/SignatureFile_"
-				+ ver + ".signdoc";
+		var = path + infod.getDirectoryIdentifier() + "setupDone.flag";
+		signatureFileLink = "https://raw.githubusercontent.com/NVTechKorea/verificationServer/master/DreamOS/Sign/" + ver + ".vkey";
 	}
 
 	public void initiate() {
+		System.out.println("SignatureCheck [INFO]: Checking signature...");
 		boolean pass = false;
 		pass = check();
 		if (!pass) {
 			showWarning("Unable to execute program.\nFailed to check integrity.");
 		} else {
-			System.out.println("INFO [SIG]: Integrity check was successful.");
+			System.out.println("SignatureCheck [INFO]: Integrity check was successful.");
 		}
 	}
 
@@ -40,20 +41,19 @@ public class SignatureCheck_New {
 		for (;;) {
 			if (signatureFile.exists()) {
 				String data = rf.initiate(signatureFileLoc);
-				if (data.startsWith("GITVERFSTART")) {
-					String parsable[] = data.split("<.>");
+				if (data.startsWith("VERSION=" + ver)) {
+					String parsable[] = data.split(";");
 					int parsableLength = parsable.length;
 					if (parsableLength == 3) {
-						String[] signverifier = parsable[1].split("-");
-						if (signverifier[0].equals(ver)) {
-							if (signverifier[1].equals("signed")) {
+						if (parsable[1].equals("SIGNED=TRUE")) {
+							if (parsable[2].equals("EXPIRED=FALSE")) {
 								pass = true;
 								break;
 							} else {
-								showWarning("This version is no longer being signed.");
+								showWarning("This version is permanently expired.");
 							}
 						} else {
-							showWarning("Signature version does not match.");
+							showWarning("This version is no longer being signed.");
 						}
 					} else {
 						showWarning("Failed parsing signature file.");
@@ -72,8 +72,6 @@ public class SignatureCheck_New {
 	}
 
 	public void showWarning(String warningMsg) {
-		JFrame warningFrame = new JFrame("Error");
-		JOptionPane.showMessageDialog(warningFrame, warningMsg);
 		System.out.println("SignatureCheck [ERROR]: " + warningMsg);
 		DeleteFile df = new DeleteFile();
 		df.initiate(signatureFileLoc, true);

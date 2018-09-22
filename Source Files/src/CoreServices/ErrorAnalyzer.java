@@ -1,4 +1,5 @@
 package CoreServices;
+import InternalPackages.Shutdown;
 // Module Code: system.dreampackage.erroranalyzer
 public class ErrorAnalyzer{
 	public ErrorAnalyzer(){}
@@ -26,10 +27,11 @@ public class ErrorAnalyzer{
 			uiprint("/////////////PANIC/////////////");
 			e.printStackTrace();
 			uiprint("///////////////////////////////");	
+			uiprint("Please report this error to the developer. Thanks.");
 		}
-		System.exit(0);
+		Shutdown.init();
 	}
 	public static void uiprint(String s){
-		System.out.println("INFO [E-ANALYZER]: " + s);
+		System.out.println("E-ANALYZER [INFO]: " + s);
 	}
 }

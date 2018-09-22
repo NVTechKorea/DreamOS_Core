@@ -6,7 +6,7 @@ import CoreModules.DeleteFolder;
 import CoreModules.DeleteFile;
 import CoreServices.InfoServer;
 // Module Code: user.dneo.Installer
-public class Installer{
+public class LiberateReality{
 	int permission = 501;
 	String task = "SYSTEM_COMMAND:HOT_REBOOT";
 	String path = null;
@@ -17,7 +17,7 @@ public class Installer{
 	MakeDir md = null;
 	WriteFile wf = null;
 	InfoServer infoserver = null;
-	public Installer(){
+	public LiberateReality(){
 		df = new DeleteFile();
 		rf = new ReadFile();
 		dd = new DeleteFolder();

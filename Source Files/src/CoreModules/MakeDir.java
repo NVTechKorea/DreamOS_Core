@@ -15,8 +15,11 @@ public class MakeDir{
 		try{
 			file = new File(path);
 			file.mkdir();
+			if(!file.isDirectory()) {
+				System.out.println("MAKEDIR [ERROR]: There was a problem while making the directory. Path: " + path);
+			}
 		}catch(Exception e){
-			System.out.println("MAKEDIR [ERROR]");
+			System.out.println("MAKEDIR [ERROR]: " + e.toString());
 			ErrorAnalyzer ea = new ErrorAnalyzer();
 			ea.initiate(e, process, false);
 		}

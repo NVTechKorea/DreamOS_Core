@@ -1,7 +1,10 @@
 package Security;
 import CoreServices.ErrorAnalyzer;
 public class TCEngine {
-	public TCEngine() {print("TriCalcEngine started...");}
+	boolean silence = false;
+	public void silence(boolean gotSilence) {
+		silence = gotSilence;
+	}
 	public String encrypt (String content, String pass) {
 		print("Encryption started.");
 		String finalResult = null;
@@ -21,14 +24,10 @@ public class TCEngine {
 		return finalResult;
 	}
 	public String decrypt (String content, String pass) {
-		print("Decryption started.");
-		print("PROCESS 1: Gathering data");
 		String result = null;
 		String integer = pass.length() + "";
 		integer = EncryptTool.aesEncrypt(integer, "alpine");
 		try {
-			print("Done.");
-			print("PROCESS 2: Start analyzing header");
 			if(!content.startsWith("<key>" + integer)) {
 				result = "SYSTEM_return:noHeaderData";
 			}else {
@@ -36,12 +35,8 @@ public class TCEngine {
 				if(decrypt.length!=4) {
 					result = "SYSTEM_return:brokenData";
 				}else {
-					print("Analyzation complete.");
-					print("PROCESS 3: Processing header");
 					String head = EncryptTool.aesDecrypt(decrypt[1], "alpine");
 					if(head.equals(pass.length() + "")) {
-						print("Header verified.");
-						print("PROCESS 4: Decrypt");
 						result = EncryptTool.aesDecrypt(decrypt[2], integer);
 						result = EncryptTool.aesDecrypt(result, pass);
 					}else {
@@ -58,6 +53,8 @@ public class TCEngine {
 		return result;
 	}
 	public void print(String s) {
-		System.out.println("TCE [INFO]: " + s);
+		if(!silence) {
+			System.out.println("TCE [INFO]: " + s);
+		}
 	}
 }

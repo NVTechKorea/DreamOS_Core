@@ -1,6 +1,6 @@
 package InternalPackages;
 
-public class Write {
+public class Cd {
 	public void init(String[] arg) {
 		
 	}

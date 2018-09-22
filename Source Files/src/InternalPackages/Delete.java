@@ -1,7 +1,7 @@
 package InternalPackages;
 
 public class Delete {
-	public void init() {
+	public void init(String[] arg) {
 		
 	}
 	public void print(String s) {

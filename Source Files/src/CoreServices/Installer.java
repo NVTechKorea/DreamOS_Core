@@ -1,6 +1,5 @@
 package CoreServices;
 import CoreModules.*;
-import java.io.File;
 public class Installer {
 	DeleteFile df = new DeleteFile();
 	DeleteFolder rm = new DeleteFolder();
@@ -10,33 +9,32 @@ public class Installer {
 	WriteFile wf = new WriteFile();
 	InfoServer infod = new InfoServer();
 	public void init() {
-		print("Running installer!");
-		checkDirectories();
+		print("Entered installer.");
+		print("Setting up storage...");
+		InfoServer infod = new InfoServer();
+		setupStorage(infod);
+		print("Setup complete.");
 	}
-	public void checkDirectories() {
-		String path = infod.getPath();
-		File masterDir = new File(path);
-		if(!masterDir.exists()) {
-			masterDir.mkdirs();
-		}
-		String Datapath = infod.getCertainPath("data");
-		File dataPart = new File(Datapath);
-		if(!dataPart.exists()) {
-			dataPart.mkdirs();
-		}
-		String system = infod.getCertainPath("system");
-		File systemPart = new File(system);
-		if(!systemPart.exists()) {
-			systemPart.mkdirs();
-		}
-		String var = infod.getCertainPath("var");
-		File varPart = new File(var);
-		if(!varPart.exists()) {
-			varPart.mkdirs();
-		}
-		
+	public void setupStorage(InfoServer infod) {
+		MakeDir makeDir = new MakeDir();
+		String path = infod.getUserDirectory() + infod.getDirectoryIdentifier() + infod.getManufacturer();
+		makeDir.initiate(path);
+		path = path + infod.getDirectoryIdentifier() + infod.getSystemName();
+		makeDir.initiate(path);
+		path = path + infod.getDirectoryIdentifier() + infod.getVersion();
+		makeDir.initiate(path);
+		path = infod.getCertainPath("var");
+		makeDir.initiate(path);
+		path = infod.getCertainPath("system");
+		makeDir.initiate(path);
+		path = infod.getCertainPath("data");
+		makeDir.initiate(path);
+		path = infod.getCertainPath("installer");
+		makeDir.initiate(path);
+		path = infod.getCertainPath("als");
+		makeDir.initiate(path);
 	}
 	public static void print(String s) {
-		System.out.println("Install [INFO]: " + s);
+		System.out.println("Installer [INFO]: " + s);
 	}
 }

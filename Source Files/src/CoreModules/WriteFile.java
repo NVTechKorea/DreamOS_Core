@@ -16,7 +16,7 @@ public class WriteFile{
 			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), "utf-8"));
 			writer.write(contents);
 		}catch(Exception e){
-			System.out.println("Writer [ERROR]");
+			System.out.println("Writer [ERROR]: " + e.toString());
 			ErrorAnalyzer ea = new ErrorAnalyzer();
 			ea.initiate(e, process, false);
 		}finally {
