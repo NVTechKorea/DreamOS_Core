@@ -6,7 +6,7 @@ package CoreModules;
 import java.io.*;
 import java.util.Scanner;
 
-import CoreServices.ErrorAnalyzer;
+import CoreFramework.ErrorAnalyzer;
 public class WriteFile{
 	public WriteFile(){}
 	public void initiate(String path, String contents){

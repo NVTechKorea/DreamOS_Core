@@ -1,13 +1,13 @@
 package Security;
-import CoreServices.InfoServer;
 import CoreServices.Boot;
-import CoreServices.ErrorAnalyzer;
-import CoreServices.GetInput;
 
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Random;
 
+import CoreFramework.ErrorAnalyzer;
+import CoreFramework.GetInput;
+import CoreFramework.InfoServer;
 import CoreModules.WriteFile;
 import CoreModules.ReadFile;
 import CoreModules.DeleteFile;

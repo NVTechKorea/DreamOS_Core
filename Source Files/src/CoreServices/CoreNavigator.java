@@ -1,11 +1,12 @@
 package CoreServices;
 import InternalPackages.*;
 import InternalPackages.Shutdown;
-import ExternalPackages.*;
 import Security.*;
 
 import java.io.File;
 
+import CoreFramework.GetInput;
+import CoreFramework.InfoServer;
 import CoreModules.ReadFile;
 import CoreModules.WriteFile;
 public class CoreNavigator{
@@ -19,7 +20,6 @@ public class CoreNavigator{
 	Shutdown shutdown = null;
 	Write write = null;
 	TCEngine tce = null;
-	LiberateReality liber = null;
 	ALShield alshield = new ALShield();
 	
 	String decryptToken = null;
@@ -43,17 +43,25 @@ public class CoreNavigator{
 				Shutdown.init();
 				break;
 			}else if(command.startsWith("help")) {
-				
-			}else if(command.startsWith("exec")) {
-				
+				help.init(command.split(" "));
 			}else if(command.startsWith("cd")) {
-				
+				cd.init(command.split(" "));
 			}else if(command.startsWith("mkdir")) {
-				
+				mkdir.init(command.split(" "));
 			}else if(command.startsWith("list")) {
 				
 			}else if(command.startsWith("write")) {
-				
+				write.init(command.split(" "));
+			}else if(command.startsWith("su")) {
+				if(permission==0) {
+					
+				}else {
+					print("You are not user@lev0!");
+				}
+			}else if(command.startsWith("rdpref")) {
+				rdpref.init(command.split(" "));
+			}else if(command.startsWith("chpref")) {
+				chpref.init(command.split(" "));
 			}
 		}
 	}
@@ -70,24 +78,8 @@ public class CoreNavigator{
 		write = new Write();
 		tce = new TCEngine();
 		prints("Querying external commands...");
-		if(!b) {
-			printw("Package excluded: LiberateReality");
-			printw("Package excluded: R3Ality");
-			printw("Package excluded: L1B3r4Ti0N");
-			printw("These packages are not properly authorized.");
-		}else {
+		if(b) {
 			printw("System partition modification is enabled.");
-			String exclude = getExclude();
-			if(exclude!=null) {
-					if(exclude.contains("LiberateReality")) {
-						printw("Package excluded: LiberateReality");
-					}else if(exclude.contains("R3Ality")) {
-						printw("Package excluded: R3Ality");
-					}else if(exclude.contains("L1B3r4Ti0N")) {
-						printw("Package excluded: L1B3r4Ti0N");
-					}
-					printw("These packages are in excluded list.");
-				}
 		}
 		prints("Querying complete.");
 	}

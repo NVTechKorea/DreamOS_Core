@@ -1,4 +1,4 @@
-package CoreServices;
+package CoreFramework;
 import java.util.Scanner;
 public class GetInput {
 	Scanner input = new Scanner(System.in);

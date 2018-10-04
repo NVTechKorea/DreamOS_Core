@@ -1,4 +1,5 @@
 package CoreServices;
+import CoreFramework.InfoServer;
 import CoreModules.*;
 public class Installer {
 	DeleteFile df = new DeleteFile();
@@ -13,6 +14,7 @@ public class Installer {
 		print("Setting up storage...");
 		InfoServer infod = new InfoServer();
 		setupStorage(infod);
+		setupFiles(infod);
 		print("Setup complete.");
 	}
 	public void setupStorage(InfoServer infod) {
@@ -33,6 +35,12 @@ public class Installer {
 		makeDir.initiate(path);
 		path = infod.getCertainPath("als");
 		makeDir.initiate(path);
+	}
+	public void setupFiles(InfoServer infod) {
+		wf.initiate(infod.getPathFileLocation(), infod.getDefaultPath());
+		wf.initiate(infod.getCertainFile("syspref_debug"), "false");
+		wf.initiate(infod.getCertainFile("userpref_checkForUpdate"), "true");
+		wf.initiate(infod.getCertainFile("syspref_lockSystemPart"), "true");
 	}
 	public static void print(String s) {
 		System.out.println("Installer [INFO]: " + s);

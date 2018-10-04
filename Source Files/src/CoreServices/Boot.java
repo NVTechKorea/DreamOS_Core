@@ -1,4 +1,8 @@
 package CoreServices;
+
+import CoreFramework.ErrorAnalyzer;
+import CoreFramework.InfoServer;
+
 public class Boot {
 	public void init(boolean chkticket, String apticket) {
 		InfoServer infod = new InfoServer();
@@ -6,6 +10,7 @@ public class Boot {
 		print("Name: Dynamic Neo Bootloader XII");
 		print("Version: 12.6");
 		print("OS to boot: " + infod.getSystemName() + " " + infod.getVersion());
+		print("Launching InfoServer...");
 		InitialRun ir = new InitialRun();
 		boolean disableSecurity = ir.init(chkticket, apticket);
 		CoreNavigator cn = new CoreNavigator();

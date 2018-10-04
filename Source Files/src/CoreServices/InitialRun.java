@@ -1,6 +1,7 @@
 package CoreServices;
 import java.io.File;
 
+import CoreFramework.InfoServer;
 import CoreModules.WriteFile;
 import Security.CheckTicket;
 import Security.PostSignatureCheck;
@@ -9,14 +10,14 @@ public class InitialRun {
 	public boolean init(boolean chkticket, String apticket) {
 		print("RunManager entered.");
 		InfoServer infod = new InfoServer();
-		print("Checking inital run history...");
-		String path = infod.getCertainFile("firstRunFlag");
-		File file = new File(path);
-		if(!file.exists()) {
-			print("No history found.");
+		print("Checking initial run history...");
+		File file = new File(infod.getCertainFile("firstRunFlag"));
+		File pathloc = new File(infod.getPathFileLocation());
+		if(!file.exists()||!pathloc.exists()) {
 			print("Running installer...");
 			Installer installer = new Installer();
-			installer.init();
+			installer.setupStorage(infod);
+			installer.setupFiles(infod);
 			setupFlag(infod);
 			SignatureCheck sigchk = new SignatureCheck();
 			sigchk.regvar();

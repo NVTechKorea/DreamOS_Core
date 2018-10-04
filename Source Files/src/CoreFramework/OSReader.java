@@ -1,4 +1,4 @@
-package CoreServices;
+package CoreFramework;
 public class OSReader{
 	public OSReader(){}
 	public String[] initiate(){

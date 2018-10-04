@@ -1,5 +1,5 @@
 package Security;
-import CoreServices.ErrorAnalyzer;
+import CoreFramework.ErrorAnalyzer;
 public class TCEngine {
 	boolean silence = false;
 	public void silence(boolean gotSilence) {

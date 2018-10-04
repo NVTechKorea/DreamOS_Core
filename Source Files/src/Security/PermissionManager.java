@@ -1,8 +1,8 @@
 package Security;
 
+import CoreFramework.InfoServer;
 import CoreModules.DeleteFile;
 import CoreModules.WriteFile;
-import CoreServices.InfoServer;
 
 public class PermissionManager {
 	public static void scan(int permission) {

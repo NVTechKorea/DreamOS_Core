@@ -1,4 +1,4 @@
-package CoreServices;
+package CoreFramework;
 import InternalPackages.Shutdown;
 // Module Code: system.dreampackage.erroranalyzer
 public class ErrorAnalyzer{

@@ -1,10 +1,11 @@
 package Security;
 
 import CoreModules.ReadFile;
-import CoreServices.InfoServer;
 import CoreModules.DeleteFile;
 import CoreModules.DownloadHelper;
 import java.io.File;
+
+import CoreFramework.InfoServer;
 
 public class SignatureCheck {
 	private String signatureFileLoc = null;

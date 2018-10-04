@@ -1,9 +1,10 @@
 package Security;
 
 import CoreModules.ReadFile;
-import CoreServices.InfoServer;
 import CoreModules.DownloadHelper;
 import java.io.File;
+
+import CoreFramework.InfoServer;
 
 public class PostSignatureCheck {
 	private String signatureFileLoc = null;

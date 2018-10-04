@@ -1,9 +1,13 @@
-package CoreServices;
+package CoreFramework;
 
+import java.io.File;
 import java.util.Scanner;
+
+import CoreModules.ReadFile;
 
 // Module Code: system.dreampackage.infoserver
 public class InfoServer{
+	Scanner input = new Scanner(System.in);
 	public InfoServer(){}
 	public String getVersion(){
 		done();
@@ -18,8 +22,12 @@ public class InfoServer{
 		return 0.10;
 	}
 	public String getPath(){
-		String path = System.getProperty("user.home") + getDirectoryIdentifier() + getManufacturer() + getDirectoryIdentifier() + getSystemName() + getDirectoryIdentifier() + getVersion() + getDirectoryIdentifier();
-		done();
+		ReadFile rf = new ReadFile();
+		String path = getDefaultPath();
+		File pathloc = new File(getPathFileLocation());
+		if(pathloc.exists()) {
+			path = rf.initiate(path + "system" + getDirectoryIdentifier() + "path.scv");
+		}
 		return path;
 	}
 	public String getCertainFile(String s) {
@@ -39,11 +47,15 @@ public class InfoServer{
 			path = getCertainPath("als") + "encryptFiles.als";
 		}else if(s.equals("wide_permission")) {
 			path = getCertainPath("var") + "permission.pms";
+		}else if(s.equals("syspref_debug")) {
+			path = getCertainPath("var") + "debug.pref";
+		}else if(s.equals("userpref_checkForUpdate")) {
+			path = getCertainPath("var") + "checkForUpdate.pref";
 		}
 		return path;
 	}
 	public String getCertainPath(String s) {
-		String path = System.getProperty("user.home") + getDirectoryIdentifier() + getManufacturer() + getDirectoryIdentifier() + getSystemName() + getDirectoryIdentifier() + getVersion() + getDirectoryIdentifier();
+		String path = getPath();
 		done();
 		if(s.equals("system")) {
 			path = path + "system" + getDirectoryIdentifier();
@@ -51,8 +63,6 @@ public class InfoServer{
 			path = path + "data" + getDirectoryIdentifier();
 		}else if(s.equals("var")) {
 			path = path + "var" + getDirectoryIdentifier();
-		}else if(s.equals("installer")) {
-			path = getCertainPath("system" )+ "dneo.installer" + getDirectoryIdentifier();
 		}else if(s.equals("als")) {
 			path = getCertainPath("system") + "absolutelevelshield" + getDirectoryIdentifier();
 		}
@@ -76,17 +86,22 @@ public class InfoServer{
 		return s;
 	}
 	public void done() {
-		//System.out.println("InfoServerd [INFO]: Information is delivered.");
+		//System.out.println("InfoServerd [INFO]: Information successfully delivered.");
 	}
 	 public boolean checkConnection(String process) {
 	    	System.out.println("InfoServerd [NOTIFY]: Process " + process + " is requesting system information. Type yes to authorize, type n to reject.");
-	    	Scanner input = new Scanner(System.in);
 	    	String i = input.nextLine();
-	    	input.close();
 	    	if(i.equals("yes")) {
 	    		return true;
 	    	}else {
 	    		return false;
 	    	}
 	 }
+	public String getDefaultPath() {
+		String path = System.getProperty("user.home") + getDirectoryIdentifier() + getManufacturer() + getDirectoryIdentifier() + getSystemName() + getDirectoryIdentifier() + getVersion() + getDirectoryIdentifier();
+		return path;
+	}
+	public String getPathFileLocation() {
+		return getDefaultPath() + "system" + getDirectoryIdentifier() + "path.scv";
+	}
 }

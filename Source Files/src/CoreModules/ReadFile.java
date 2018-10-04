@@ -1,11 +1,8 @@
 package CoreModules;
-// Declaration:
-// ReadFile version: Test Beta 9
-// Package Build: 18B080552UD-TB8
-// Copyright (C) Dream Project Group
-import CoreServices.ErrorAnalyzer;
 import java.io.*;
 import java.util.Scanner;
+
+import CoreFramework.ErrorAnalyzer;
 public class ReadFile{
 	public ReadFile(){}
 	@SuppressWarnings("resource")
@@ -15,10 +12,11 @@ public class ReadFile{
 		try{
 			File dir = new File(path);
 			if(dir.isDirectory()){
-				System.out.println("READER [ERROR]: Requested argument is not a file; is a directory.");
+				System.out.println("READER [ERROR]: Requested path is not a file; is a directory.");
 				data = " ";
 			}else if(!dir.exists()){
-				System.out.println("READER [ERROR]: Requested argument does not exist.");
+				System.out.println("READER [ERROR]: Requested path does not exist.");
+				System.out.println("READER [LOG]: Error while reading: " + path);
 				data = " ";
 			}else{
 				BufferedReader breader = null;

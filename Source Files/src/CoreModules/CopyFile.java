@@ -5,7 +5,7 @@ package CoreModules;
 import java.io.*;
 import java.util.Scanner;
 
-import CoreServices.ErrorAnalyzer;
+import CoreFramework.ErrorAnalyzer;
 public class CopyFile{
     public void initiate(String src, String destination){
         File source = new File(src);

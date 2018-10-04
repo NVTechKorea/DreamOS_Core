@@ -4,7 +4,7 @@ import java.util.Random;
 import java.io.File;
 import java.util.UUID;
 
-import CoreServices.InfoServer;
+import CoreFramework.InfoServer;
 import Security.TCEngine;
 import CoreModules.ReadFile;
 import CoreModules.WriteFile;
@@ -23,11 +23,18 @@ public class CheckTicket {
 				TCEngine tce = new TCEngine();
 				tce.silence(true);
 				ticket = tce.decrypt(ticket, uuid);
-				if(apticket.equals(ticket)) {
-					print("Ticket is valid.");
-					return "1";
+				if(apticket!=null) {
+					if(apticket.equals(ticket)) {
+						print("Ticket is valid.");
+						return "1";
+					}else {
+						print("This ticket isn't valid.");
+						return "2";
+					}
 				}else {
-					print("This ticket isn't valid.");
+					printw("Something went wrong while checking your ticket.");
+					printw("Please report this error to the developer.");
+					print("Ticket is considered as not valid.");
 					return "2";
 				}
 			}else {
@@ -48,5 +55,8 @@ public class CheckTicket {
 	}
 	public static void print(String s) {
 		System.out.println("TicketGuard [INFO]: " + s);
+	}
+	public static void printw(String s) {
+		System.out.println("TicketGuard [WARN]: " + s);
 	}
 }
