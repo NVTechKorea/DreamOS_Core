@@ -1,5 +1,5 @@
 package Security;
-import CoreFramework.ErrorAnalyzer;
+import CoreFramework.PanicHandler;
 public class TCEngine {
 	boolean silence = false;
 	public void silence(boolean gotSilence) {
@@ -16,7 +16,7 @@ public class TCEngine {
 			result = EncryptTool.aesEncrypt(result, integer);
 			finalResult = "<key>" + integer + "<key>" + result + "<key> <data>";
 		}catch(Exception e) {
-			ErrorAnalyzer ea = new ErrorAnalyzer();
+			PanicHandler ea = new PanicHandler();
 			ea.initiate(e, "TCE Encryption", true);
 		}
 		print("Encryption process finished.");
@@ -45,7 +45,7 @@ public class TCEngine {
 				}
 			}
 		}catch(Exception e) {
-			ErrorAnalyzer ea = new ErrorAnalyzer();
+			PanicHandler ea = new PanicHandler();
 			ea.initiate(e, "TCE Decryption", true);
 		}
 		print("Decryption process finished.");

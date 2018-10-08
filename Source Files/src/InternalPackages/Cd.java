@@ -1,8 +1,8 @@
 package InternalPackages;
 
 public class Cd {
-	public void init(String[] arg) {
-		
+	public String init(String[] arg) {
+		return arg[1];
 	}
 	public void print(String s) {
 		System.out.println(s);

@@ -10,7 +10,7 @@ public class PostSignatureCheck {
 	private String signatureFileLoc = null;
 	private String signatureFileLink = null;
 	private String ver = null;
-	InfoServer infod = new InfoServer();
+	InfoServer infod = new InfoServer("/system/Security/PostSignatureCheck");
 	public void regvar() {
 		ver = infod.getVersionInDouble() + "0";
 		String path = infod.getCertainPath("var");

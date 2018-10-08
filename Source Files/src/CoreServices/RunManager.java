@@ -6,10 +6,10 @@ import CoreModules.WriteFile;
 import Security.CheckTicket;
 import Security.PostSignatureCheck;
 import Security.SignatureCheck;
-public class InitialRun {
+public class RunManager {
 	public boolean init(boolean chkticket, String apticket) {
 		print("RunManager entered.");
-		InfoServer infod = new InfoServer();
+		InfoServer infod = new InfoServer("/system/CoreServices/RunManager");
 		print("Checking initial run history...");
 		File file = new File(infod.getCertainFile("firstRunFlag"));
 		File pathloc = new File(infod.getPathFileLocation());

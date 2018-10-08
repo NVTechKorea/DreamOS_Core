@@ -5,7 +5,7 @@ import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Random;
 
-import CoreFramework.ErrorAnalyzer;
+import CoreFramework.PanicHandler;
 import CoreFramework.GetInput;
 import CoreFramework.InfoServer;
 import CoreModules.WriteFile;
@@ -16,8 +16,8 @@ import CoreModules.MakeDir;
 import InternalPackages.Shutdown;
 public class ALShield {
 	String version = "AbsoluteLevelShield-1.16";
-	InfoServer infod = new InfoServer();
-	ErrorAnalyzer ea = new ErrorAnalyzer();
+	InfoServer infod = new InfoServer("/system/Security/ALShield");
+	PanicHandler ea = new PanicHandler();
 	WriteFile wf = new WriteFile();
 	ReadFile rf = new ReadFile();
 	MakeDir md = new MakeDir();
@@ -48,7 +48,7 @@ public class ALShield {
 			makeLoginToken();
 			print("Applying changes.");
 			Boot boot = new Boot();
-			boot.init(false, null);
+			boot.init(false, null, true);
 		}else {
 			print("Logging in...");
 			decryptToken = userLogin();
@@ -62,9 +62,7 @@ public class ALShield {
 		boolean pass = false;
 		for(int i = 0; i<5; i++) {
 			String[] data = getUserInfo();
-			print(decrypted);
 			String decrypted2 = tce.encrypt(data[0], data[1]);
-			print(decrypted2);
 			if(decrypted.equals(decrypted2)) {
 				print("Login successful.");
 				pass = true;
@@ -80,22 +78,27 @@ public class ALShield {
 			print("All the data are not readable now.");
 			DeleteFile df = new DeleteFile();
 			df.initiate(infod.getCertainFile("loginrandomtoken"), true);
-			Shutdown.init();
+			Shutdown.init("");
 		}
 		getEncryptorToken();
-		encryptorToken = tce.decrypt(encryptorToken, machine_uuid);
-		if(encryptorToken.equals("SYSTEM_return:wrongPasswordData")) {
+		String loadEncryptToken = tce.decrypt(rf.initiate(infod.getCertainFile("encryptortoken")), machine_uuid);
+		if(loadEncryptToken.equals("SYSTEM_return:wrongPasswordData")) {
 			printe("Files cannot be decrypted.");
 			printe("2843: UUID does not match.");
-			Shutdown.init();
+			Shutdown.init("");
 		}
-		encryptorToken = tce.decrypt(encryptorToken, loginToken);
+		loadEncryptToken = tce.decrypt(loadEncryptToken, loginToken);
 		if(encryptorToken.equals("SYSTEM_return:wrongPasswordData")) {
 			printe("Files cannot be decrypted.");
 			printe("2853: Login token does not match.");
-			Shutdown.init();
+			Shutdown.init("");
 		}
-		return encryptorToken;
+		if(!loadEncryptToken.equals(encryptorToken)) {
+			printe("Files cannot be decrypted.");
+			printe("2863: Decrypt password does not match.");
+			Shutdown.init("");
+		}
+		return loadEncryptToken;
 	}
 	public void makeLoginToken() {
 		getRandomToken();
@@ -136,7 +139,7 @@ public class ALShield {
 				break;
 			}
 		}
-		encryptorToken = tce.encrypt(i, loginToken);
+		encryptorToken = i;
 	}
 	public void getRandomToken() {
 		File token = new File(randomToken);

@@ -11,7 +11,7 @@ import CoreModules.WriteFile;
 
 public class CheckTicket {
 	public String init(boolean chkticket, String apticket) {
-		InfoServer infod = new InfoServer();
+		InfoServer infod = new InfoServer("/system/Security/CheckTicket");
 		String path_bootTicket = infod.getCertainPath("system") + "authorizedBootTicket.aptic";
 		String path_uuid = infod.getCertainPath("system") + "machine_uuid.aptic";
 		File location = new File(path_uuid);

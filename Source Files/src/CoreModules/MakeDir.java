@@ -6,7 +6,7 @@ package CoreModules;
 import java.io.*;
 import java.util.Scanner;
 
-import CoreFramework.ErrorAnalyzer;
+import CoreFramework.PanicHandler;
 public class MakeDir{
 	public MakeDir(){}
 	public void initiate(String path){
@@ -20,7 +20,7 @@ public class MakeDir{
 			}
 		}catch(Exception e){
 			System.out.println("MAKEDIR [ERROR]: " + e.toString());
-			ErrorAnalyzer ea = new ErrorAnalyzer();
+			PanicHandler ea = new PanicHandler();
 			ea.initiate(e, process, false);
 		}
 	}

@@ -6,7 +6,7 @@ package CoreModules;
 import java.io.*;
 import java.util.Scanner;
 
-import CoreFramework.ErrorAnalyzer;
+import CoreFramework.PanicHandler;
 public class WriteFile{
 	public WriteFile(){}
 	public void initiate(String path, String contents){
@@ -17,7 +17,7 @@ public class WriteFile{
 			writer.write(contents);
 		}catch(Exception e){
 			System.out.println("Writer [ERROR]: " + e.toString());
-			ErrorAnalyzer ea = new ErrorAnalyzer();
+			PanicHandler ea = new PanicHandler();
 			ea.initiate(e, process, false);
 		}finally {
 			try {

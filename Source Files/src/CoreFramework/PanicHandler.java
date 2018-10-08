@@ -1,14 +1,17 @@
 package CoreFramework;
 import InternalPackages.Shutdown;
+import recoveryOS.CoreNavigator;
 // Module Code: system.dreampackage.erroranalyzer
-public class ErrorAnalyzer{
-	public ErrorAnalyzer(){}
+public class PanicHandler{
+	public PanicHandler(){}
 	public void initiate(Exception e, String process, boolean debug){
 		String er = e.toString();
+		uiprint("Your system ran into unhandled exceptions and has to be stopped.");
+		uiprint("Panic Records================");
 		uiprint("Process: " + process);
 		if(er.contains("NullPointerException")){
 			uiprint("NullPointerException found.");
-			uiprint("Please check all the variables are correct, or contact to software manufacturer.");
+			uiprint("Please check all the variables are not null, or contact to software manufacturer.");
 		}else if (er.contains("ArrayIndexOutOfBoundsException")) {
 			uiprint("ArrayIndexOutOfBoundsException found.");
 			uiprint("Please check whether you entered too many items.");
@@ -22,16 +25,29 @@ public class ErrorAnalyzer{
 			uiprint("Please check wheter you've renamed system file, or script is compiled.");
 		}else{
 			uiprint("Unknown error. Running printStackTrace only.");
+			e.printStackTrace();
 		}
+		uiprint("=============================");
 		if(true){
 			uiprint("/////////////PANIC/////////////");
 			e.printStackTrace();
 			uiprint("///////////////////////////////");	
 			uiprint("Please report this error to the developer. Thanks.");
 		}
-		Shutdown.init();
+		try {
+			CoreNavigator cn = new CoreNavigator ();
+			cn.Core();
+		}catch(Exception recoveryOS) {
+			uiprint("System Panic while running recoveryOS sequence: " + recoveryOS.toString());
+			try {
+				Shutdown.init("");
+			}catch(Exception shutdown) {
+				uiprint("System Panic while running shutdown sequence: " + shutdown.toString());
+				System.exit(-5);
+			}
+		}
 	}
 	public static void uiprint(String s){
-		System.out.println("E-ANALYZER [INFO]: " + s);
+		System.out.println("PanicHandler [INFO]: " + s);
 	}
 }

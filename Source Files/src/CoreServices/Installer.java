@@ -8,11 +8,10 @@ public class Installer {
 	MakeDir md = new MakeDir();
 	ReadFile rf = new ReadFile();
 	WriteFile wf = new WriteFile();
-	InfoServer infod = new InfoServer();
+	InfoServer infod = new InfoServer("/system/CoreServices/Installer");
 	public void init() {
 		print("Entered installer.");
 		print("Setting up storage...");
-		InfoServer infod = new InfoServer();
 		setupStorage(infod);
 		setupFiles(infod);
 		print("Setup complete.");
@@ -40,6 +39,7 @@ public class Installer {
 		wf.initiate(infod.getPathFileLocation(), infod.getDefaultPath());
 		wf.initiate(infod.getCertainFile("syspref_debug"), "false");
 		wf.initiate(infod.getCertainFile("userpref_checkForUpdate"), "true");
+		wf.initiate(infod.getCertainFile("userpref_notifyInfoServerAccess"), "true");
 		wf.initiate(infod.getCertainFile("syspref_lockSystemPart"), "true");
 	}
 	public static void print(String s) {

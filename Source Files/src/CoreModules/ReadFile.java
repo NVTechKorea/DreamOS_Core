@@ -2,7 +2,7 @@ package CoreModules;
 import java.io.*;
 import java.util.Scanner;
 
-import CoreFramework.ErrorAnalyzer;
+import CoreFramework.PanicHandler;
 public class ReadFile{
 	public ReadFile(){}
 	@SuppressWarnings("resource")
@@ -25,7 +25,7 @@ public class ReadFile{
 			}
 		}catch(Exception e){
 			System.out.println("READER [ERROR]");
-			ErrorAnalyzer ea = new ErrorAnalyzer();
+			PanicHandler ea = new PanicHandler();
 			ea.initiate(e, process, false);
 		}
 		return data;

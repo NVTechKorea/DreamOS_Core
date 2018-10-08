@@ -5,7 +5,7 @@ package CoreModules;
 import java.io.*;
 import java.util.Scanner;
 
-import CoreFramework.ErrorAnalyzer;
+import CoreFramework.PanicHandler;
 public class CopyFile{
     public void initiate(String src, String destination){
         File source = new File(src);
@@ -23,7 +23,7 @@ public class CopyFile{
             is.close();
             os.close();
         }catch(IOException e){
-            ErrorAnalyzer ea = new ErrorAnalyzer();
+            PanicHandler ea = new PanicHandler();
             ea.initiate(e, "Copy file", false);
         }
     }

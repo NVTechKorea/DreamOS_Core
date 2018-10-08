@@ -7,6 +7,8 @@ import java.io.File;
 
 import CoreFramework.GetInput;
 import CoreFramework.InfoServer;
+import CoreFramework.LoadPreferences;
+import CoreFramework.UpdateHandler;
 import CoreModules.ReadFile;
 import CoreModules.WriteFile;
 public class CoreNavigator{
@@ -23,35 +25,54 @@ public class CoreNavigator{
 	ALShield alshield = new ALShield();
 	
 	String decryptToken = null;
+	String currentDir = null;
 	
 	int permission = 2;
 	
-	public void init(boolean disableSecurity) {
+	boolean checkUpdate = true;
+	boolean debug = false;
+	boolean lockSystemPart = true;
+	boolean notifyInfoServerAccess = true;
+	
+	public void startupNavigator(boolean disableSecurity) {
+		prints("Navigator Started.");
 		prints("Querying installed packages...");
 		queryPackages(disableSecurity);
 		decryptToken = alshield.init();
-		print("Getting current permission...");
+		prints("Getting current permission...");
 		PermissionManager.scan(permission);
-		String command = "shutdown";
-		prints(decryptToken);
-		GetInput input = new GetInput();
+		prints("Getting file system ready...");
+		prints("Starting InfoServer...");
+		InfoServer infod = new InfoServer("navigator");
+		prints("Accessing request.server...");
+		prints("Getting file system data...");
+		currentDir = infod.getCertainPath("data");
 		prints("Hello. Welcome to DreamOS.");
+	}
+	public void userInterface(boolean security) {
+		String command = "shutdown";
+		GetInput input = new GetInput();
 		for(;;) {
 			System.out.print(">");
 			command = input.init();
 			if(command.equals("shutdown")) {
-				Shutdown.init();
+				Shutdown.init("");
 				break;
 			}else if(command.startsWith("help")) {
 				help.init(command.split(" "));
 			}else if(command.startsWith("cd")) {
-				cd.init(command.split(" "));
+				String[] commandParse = command.split(" ");
+				currentDir = currentDir + commandParse[1];
 			}else if(command.startsWith("mkdir")) {
 				mkdir.init(command.split(" "));
 			}else if(command.startsWith("list")) {
 				
 			}else if(command.startsWith("write")) {
-				write.init(command.split(" "));
+				String[] commandParse = command.split(" ");
+				if(commandParse.length==3) {
+					commandParse[1] = currentDir + commandParse[1];
+					write.init(commandParse, decryptToken);
+				}
 			}else if(command.startsWith("su")) {
 				if(permission==0) {
 					
@@ -61,9 +82,50 @@ public class CoreNavigator{
 			}else if(command.startsWith("rdpref")) {
 				rdpref.init(command.split(" "));
 			}else if(command.startsWith("chpref")) {
-				chpref.init(command.split(" "));
+				boolean temp = chpref.init(command.split(" "));
+				if(temp) {
+					reloadPreferences();
+				}
+			}else if(command.equals("reloadpref")) {
+				
+			}else if(command.startsWith("debugOption.restartNavigator@localOS")) {
+				String[] parse = command.split(" ");
+				if(parse.length == 2) {
+					if(parse[1].equals("--ALSGuard-disabled")) {
+						init(false);
+					}else if(parse[1].equals("--ALSGuard-enabled")) {
+						init(true);
+					}else {
+						print("Error: parsing");
+					}
+				}else {
+					print("Error: parsing");
+				}
 			}
 		}
+	}
+	public void init(boolean disableSecurity) {
+		startupNavigator(disableSecurity);
+		reloadPreferences();
+		checkUpdate();
+		userInterface(disableSecurity);
+	}
+	public void checkUpdate() {
+		if(checkUpdate) {
+			UpdateHandler uh = new UpdateHandler();
+			boolean success = uh.init();
+			if(success) {
+				Shutdown.init("downloadedUpdate");
+			}
+		}else {
+			
+		}
+	}
+	public void reloadPreferences() {
+		checkUpdate = LoadPreferences.loadUserConfigBool("checkForUpdate");
+		notifyInfoServerAccess = LoadPreferences.loadUserConfigBool("notifyInfoServerAccess");
+		lockSystemPart = LoadPreferences.loadSystemConfigBool("lockSystemPart");
+		debug = LoadPreferences.loadSystemConfigBool("debug");
 	}
 	public void queryPackages(boolean b) {
 		prints("Querying internal commands...");
@@ -85,7 +147,7 @@ public class CoreNavigator{
 	}
 	public String getExclude() {
 		String excludeData = null;
-		InfoServer infod = new InfoServer();
+		InfoServer infod = new InfoServer("DreamOS CoreNavigator");
 		String path = infod.getCertainPath("system") + "excluded.list";
 		File excludeDataFile = new File(path);
 		if(excludeDataFile.exists()) {

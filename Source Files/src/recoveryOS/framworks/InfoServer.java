@@ -1,4 +1,4 @@
-package CoreFramework;
+package recoveryOS.framworks;
 
 import java.io.File;
 import java.util.Scanner;
@@ -9,28 +9,15 @@ import CoreModules.ReadFile;
 public class InfoServer{
 	Scanner input = new Scanner(System.in);
 	public InfoServer(String process){
-		if(!process.equals("bootloader")) {
-			if(readPref()) {
-				if(!process.equals("PreferenceLoader")) {
-					System.out.println("InfoServerd [NOTIFY]: Process " + process + " accessed to InformationServer.");
-				}
-			}
-		}
-	}
-	public boolean readPref() {
-		return LoadPreferences.loadUserConfigBool("notify");
+		System.out.println("InfoServerd [NOTIFY]: Process " + process + " accessed to InformationServer.");
 	}
 	public String getVersion(){
 		done();
-		return "Beta10_CoreOS";
+		return "Beta10_recoveryOS";
 	}
 	public String getSystemName(){
 		done();
 		return "DreamOS";
-	}
-	public String getSystemBuild(){
-		done();
-		return "18A1009";
 	}
 	public double getVersionInDouble(){
 		done();
@@ -62,16 +49,10 @@ public class InfoServer{
 			path = getCertainPath("als") + "encryptFiles.als";
 		}else if(s.equals("wide_permission")) {
 			path = getCertainPath("var") + "permission.pms";
-		}
-		//Preference files
-		else if(s.equals("syspref_debug")) {
+		}else if(s.equals("syspref_debug")) {
 			path = getCertainPath("var") + "debug.pref";
 		}else if(s.equals("userpref_checkForUpdate")) {
 			path = getCertainPath("var") + "checkForUpdate.pref";
-		}else if(s.equals("userpref_notifyInfoServerAccess")) {
-			path = getCertainPath("var") + "notifyInfoServerAccess.pref";
-		}else if(s.equals("syspref_lockSystemPart")) {
-			path = getCertainPath("var") + "lockSystemPart.pref";
 		}
 		return path;
 	}
@@ -106,16 +87,18 @@ public class InfoServer{
 		String s = System.getProperty("user.home").toString() + getDirectoryIdentifier().toString();
 		return s;
 	}
-	public void done() {}
-	public boolean checkConnection(String process) {
-		System.out.println("InfoServerd [NOTIFY]: Process " + process + " is requesting system information. Type yes to authorize, type n to reject.");
-	    String i = input.nextLine();
-	    if(i.equals("yes")) {
-	    	return true;
-	    }else {
-	    	return false;
-	    }
+	public void done() {
+		//System.out.println("InfoServerd [INFO]: Information successfully delivered.");
 	}
+	 public boolean checkConnection(String process) {
+	    	System.out.println("InfoServerd [NOTIFY]: Process " + process + " is requesting system information. Type yes to authorize, type n to reject.");
+	    	String i = input.nextLine();
+	    	if(i.equals("yes")) {
+	    		return true;
+	    	}else {
+	    		return false;
+	    	}
+	 }
 	public String getDefaultPath() {
 		String path = System.getProperty("user.home") + getDirectoryIdentifier() + getManufacturer() + getDirectoryIdentifier() + getSystemName() + getDirectoryIdentifier() + getVersion() + getDirectoryIdentifier();
 		return path;
