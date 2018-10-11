@@ -6,6 +6,7 @@ public class Write {
 		if(arg.length==3) {
 			TCEngine tce = new TCEngine();
 			WriteFile wf = new WriteFile();
+			tce.silence(true);
 			wf.initiate(arg[1], tce.encrypt(arg[2], decryptToken));
 		}else {
 			print("Parsing error: ARRAY_LENGTH_NOT_3");

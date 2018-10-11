@@ -24,6 +24,10 @@ public class InfoServer{
 		done();
 		return "Beta10_CoreOS";
 	}
+	public String getOS(){
+		done();
+		return System.getProperty("os.name");
+	}
 	public String getSystemName(){
 		done();
 		return "DreamOS";

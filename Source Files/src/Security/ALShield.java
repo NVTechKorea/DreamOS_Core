@@ -16,7 +16,7 @@ import CoreModules.MakeDir;
 import InternalPackages.Shutdown;
 public class ALShield {
 	String version = "AbsoluteLevelShield-1.16";
-	InfoServer infod = new InfoServer("/system/Security/ALShield");
+	InfoServer infod = new InfoServer("ALShield");
 	PanicHandler ea = new PanicHandler();
 	WriteFile wf = new WriteFile();
 	ReadFile rf = new ReadFile();
@@ -132,6 +132,7 @@ public class ALShield {
 		print("Type your password for file encryption.");
 		String i = null;
 		for(;;) {
+			System.out.print("Key: ");
 			i = iosys.init();
 			if(i == null) {
 				printw("Encryption password is empty.");

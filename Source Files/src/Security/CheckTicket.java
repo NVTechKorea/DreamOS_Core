@@ -16,7 +16,7 @@ public class CheckTicket {
 		String path_uuid = infod.getCertainPath("system") + "machine_uuid.aptic";
 		File location = new File(path_uuid);
 		if(location.exists()) {
-			if(chkticket) {
+			if(!chkticket) {
 				ReadFile rf = new ReadFile();
 				String ticket = rf.initiate(path_bootTicket);
 				String uuid = rf.initiate(path_uuid);

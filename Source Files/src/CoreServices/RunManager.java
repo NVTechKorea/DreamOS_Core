@@ -9,7 +9,7 @@ import Security.SignatureCheck;
 public class RunManager {
 	public boolean init(boolean chkticket, String apticket) {
 		print("RunManager entered.");
-		InfoServer infod = new InfoServer("/system/CoreServices/RunManager");
+		InfoServer infod = new InfoServer("RunManager");
 		print("Checking initial run history...");
 		File file = new File(infod.getCertainFile("firstRunFlag"));
 		File pathloc = new File(infod.getPathFileLocation());

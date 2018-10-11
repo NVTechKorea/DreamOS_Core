@@ -8,7 +8,7 @@ public class Installer {
 	MakeDir md = new MakeDir();
 	ReadFile rf = new ReadFile();
 	WriteFile wf = new WriteFile();
-	InfoServer infod = new InfoServer("/system/CoreServices/Installer");
+	InfoServer infod = new InfoServer("Installer");
 	public void init() {
 		print("Entered installer.");
 		print("Setting up storage...");

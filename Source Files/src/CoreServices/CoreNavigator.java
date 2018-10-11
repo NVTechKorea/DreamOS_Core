@@ -7,8 +7,8 @@ import java.io.File;
 
 import CoreFramework.GetInput;
 import CoreFramework.InfoServer;
+import CoreFramework.PanicHandler;
 import CoreFramework.LoadPreferences;
-import CoreFramework.UpdateHandler;
 import CoreModules.ReadFile;
 import CoreModules.WriteFile;
 public class CoreNavigator{
@@ -23,6 +23,8 @@ public class CoreNavigator{
 	Write write = null;
 	TCEngine tce = null;
 	ALShield alshield = new ALShield();
+	List list = null;
+	PanicHandler ea = new PanicHandler();
 	
 	String decryptToken = null;
 	String currentDir = null;
@@ -35,73 +37,84 @@ public class CoreNavigator{
 	boolean notifyInfoServerAccess = true;
 	
 	public void startupNavigator(boolean disableSecurity) {
-		prints("Navigator Started.");
-		prints("Querying installed packages...");
-		queryPackages(disableSecurity);
-		decryptToken = alshield.init();
-		prints("Getting current permission...");
-		PermissionManager.scan(permission);
-		prints("Getting file system ready...");
-		prints("Starting InfoServer...");
-		InfoServer infod = new InfoServer("navigator");
-		prints("Accessing request.server...");
-		prints("Getting file system data...");
-		currentDir = infod.getCertainPath("data");
-		prints("Hello. Welcome to DreamOS.");
+		try {
+			prints("Navigator Started.");
+			prints("Querying installed packages...");
+			queryPackages(disableSecurity);
+			decryptToken = alshield.init();
+			prints("Getting current permission...");
+			PermissionManager.scan(permission);
+			prints("Getting file system ready...");
+			prints("Starting InfoServer...");
+			InfoServer infod = new InfoServer("navigator");
+			prints("Accessing request.server...");
+			prints("Getting file system data...");
+			currentDir = infod.getCertainPath("data");
+			prints("Hello. Welcome to DreamOS.");
+		}catch(Exception e) {
+			ea.initiate(e, "StartupNavigator", false);
+		}
 	}
 	public void userInterface(boolean security) {
-		String command = "shutdown";
-		GetInput input = new GetInput();
-		for(;;) {
-			System.out.print(">");
-			command = input.init();
-			if(command.equals("shutdown")) {
-				Shutdown.init("");
-				break;
-			}else if(command.startsWith("help")) {
-				help.init(command.split(" "));
-			}else if(command.startsWith("cd")) {
-				String[] commandParse = command.split(" ");
-				currentDir = currentDir + commandParse[1];
-			}else if(command.startsWith("mkdir")) {
-				mkdir.init(command.split(" "));
-			}else if(command.startsWith("list")) {
-				
-			}else if(command.startsWith("write")) {
-				String[] commandParse = command.split(" ");
-				if(commandParse.length==3) {
-					commandParse[1] = currentDir + commandParse[1];
-					write.init(commandParse, decryptToken);
-				}
-			}else if(command.startsWith("su")) {
-				if(permission==0) {
-					
-				}else {
-					print("You are not user@lev0!");
-				}
-			}else if(command.startsWith("rdpref")) {
-				rdpref.init(command.split(" "));
-			}else if(command.startsWith("chpref")) {
-				boolean temp = chpref.init(command.split(" "));
-				if(temp) {
+		try {
+			String command = "shutdown";
+			GetInput input = new GetInput();
+			for(;;) {
+				System.out.print(">");
+				command = input.init();
+				if(command.equals("shutdown")) {
+					Shutdown.init("");
+					break;
+				}else if(command.startsWith("help")) {
+					help.init();
+				}else if(command.startsWith("cd")) {
+					cd.init(command.split(" "), currentDir);
+				}else if(command.startsWith("mkdir")) {
+					mkdir.init(command.split(" "));
+				}else if(command.equals("list")) {
+					list.init(currentDir);
+				}else if(command.startsWith("read")) {
+					print(read.init(command.split(" "), decryptToken, currentDir));
+				}else if(command.startsWith("write")) {
+					String[] commandParse = command.split(" ");
+					if(commandParse.length==3) {
+						commandParse[1] = currentDir + commandParse[1];
+						write.init(commandParse, decryptToken);
+					}else {
+						print("Syntax error.");
+					}
+				}else if(command.startsWith("su")) {
+					if(permission==0) {
+						
+					}
+				}else if(command.startsWith("delete")) {
+					delete.init(command.split(" "), currentDir);
+				}else if(command.startsWith("rdpref")) {
+					rdpref.init(command.split(" "));
+				}else if(command.startsWith("chpref")) {
+					boolean temp = chpref.init(command.split(" "));
+					if(temp) {
+						reloadPreferences();
+					}
+				}else if(command.equals("reloadpref")) {
 					reloadPreferences();
-				}
-			}else if(command.equals("reloadpref")) {
-				
-			}else if(command.startsWith("debugOption.restartNavigator@localOS")) {
-				String[] parse = command.split(" ");
-				if(parse.length == 2) {
-					if(parse[1].equals("--ALSGuard-disabled")) {
-						init(false);
-					}else if(parse[1].equals("--ALSGuard-enabled")) {
-						init(true);
+				}else if(command.startsWith("debugOption.restartNavigator@localOS")) {
+					String[] parse = command.split(" ");
+					if(parse.length == 2) {
+						if(parse[1].equals("--ALSGuard-disabled")) {
+							init(false);
+						}else if(parse[1].equals("--ALSGuard-enabled")) {
+							init(true);
+						}else {
+							print("Error: parsing");
+						}
 					}else {
 						print("Error: parsing");
 					}
-				}else {
-					print("Error: parsing");
 				}
 			}
+		}catch(Exception e) {
+			ea.initiate(e, "CoreUserInterface", false);
 		}
 	}
 	public void init(boolean disableSecurity) {
@@ -110,6 +123,7 @@ public class CoreNavigator{
 		checkUpdate();
 		userInterface(disableSecurity);
 	}
+
 	public void checkUpdate() {
 		if(checkUpdate) {
 			UpdateHandler uh = new UpdateHandler();
@@ -139,6 +153,7 @@ public class CoreNavigator{
 		shutdown = new Shutdown();
 		write = new Write();
 		tce = new TCEngine();
+		list = new List();
 		prints("Querying external commands...");
 		if(b) {
 			printw("System partition modification is enabled.");
