@@ -18,4 +18,7 @@ public class PermissionManager {
 		DeleteFile df = new DeleteFile();
 		df.initiate(infod.getCertainFile("wide_permission"), true);
 	}
+	public static String getSerial() {
+		return "serial:CBED2FD52CED6D52973A92C7AC393C83B9272A8BCAB0F4D0492DC33216A16CC1";
+	}
 }

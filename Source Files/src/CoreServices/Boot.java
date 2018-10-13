@@ -27,6 +27,10 @@ public class Boot {
 					print("Please run update helper!");
 					Shutdown.init("");
 				}
+				File lockTicket = new File(cfu.getFile("lockTicket.lock"));
+				if(!lockTicket.exists()){
+					Installer.onlyWriteLockTicket();
+				}
 				try {
 					cn.init(disableSecurity);
 				}catch(Exception e) {

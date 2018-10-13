@@ -36,23 +36,41 @@ public class CoreNavigator{
 	boolean lockSystemPart = true;
 	boolean notifyInfoServerAccess = true;
 	
+	boolean superuser = false;
+	
 	public void startupNavigator(boolean disableSecurity) {
 		try {
 			prints("Navigator Started.");
 			prints("Querying installed packages...");
 			queryPackages(disableSecurity);
 			decryptToken = alshield.init();
-			prints("Getting current permission...");
-			PermissionManager.scan(permission);
 			prints("Getting file system ready...");
 			prints("Starting InfoServer...");
 			InfoServer infod = new InfoServer("navigator");
 			prints("Accessing request.server...");
+			prints("Getting current permission...");
+			PermissionManager.scan(permission);
+			readLockToken(infod);
 			prints("Getting file system data...");
 			currentDir = infod.getCertainPath("data");
 			prints("Hello. Welcome to DreamOS.");
 		}catch(Exception e) {
 			ea.initiate(e, "StartupNavigator", false);
+		}
+	}
+	public void readLockToken(InfoServer infod) {
+		String presetString = "read lockTicket.lock";
+		String[] presetArray = presetString.split(" ");
+		String parsable = read.init(presetArray, "digital", infod.getCertainPath("system"));
+		if(parsable.equals(PermissionManager.getSerial())) {
+			superuser = false;
+		}else {
+			if(parsable.equals("serial:3C6753C48DAA370844B13B685856581F37A027D1843036C1FA472CC88392148D")) {
+				superuser = true;
+				prints("Firmware unlocked!! (3C6753C48DAA370844B13B685856581F37A027D1843036C1FA472CC88392148D)");
+			}else {
+				superuser = false;
+			}
 		}
 	}
 	public void userInterface(boolean security) {
@@ -68,7 +86,7 @@ public class CoreNavigator{
 				}else if(command.startsWith("help")) {
 					help.init();
 				}else if(command.startsWith("cd")) {
-					cd.init(command.split(" "), currentDir);
+					currentDir = cd.init(command.split(" "), currentDir);
 				}else if(command.startsWith("mkdir")) {
 					mkdir.init(command.split(" "));
 				}else if(command.equals("list")) {
@@ -98,6 +116,10 @@ public class CoreNavigator{
 					}
 				}else if(command.equals("reloadpref")) {
 					reloadPreferences();
+				}else if(command.equals("load_kernelinfo")) {
+					print(SystemQuery.getDeepSystemInfo("kernel"));
+				}else if(command.startsWith("exec")) {
+					Exec.init(command.split(" "), currentDir);
 				}else if(command.startsWith("debugOption.restartNavigator@localOS")) {
 					String[] parse = command.split(" ");
 					if(parse.length == 2) {
