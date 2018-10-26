@@ -20,7 +20,7 @@ public class CoreFilesUtility {
 		}else if(fileName.equals("sysname.info")) {
 			return infod.getCertainPath("system") + "sysname.info";
 		}else if(fileName.equals("$allinfopath")) {
-			String dat = infod.getCertainPath("system") + "version.info" + "|||" + infod.getCertainPath("system") + "build.info" + "|||" + infod.getCertainPath("system") + "versionNum.info" + "|||" + infod.getCertainPath("system") + "sysname.info";
+			String dat = infod.getCertainPath("system") + "version.info" + "<SPLIT>" + infod.getCertainPath("system") + "build.info" + "<SPLIT>" + infod.getCertainPath("system") + "versionNum.info" + "<SPLIT>" + infod.getCertainPath("system") + "sysname.info";
 			return dat;
 		}else {
 			return "FileNotFoundException";

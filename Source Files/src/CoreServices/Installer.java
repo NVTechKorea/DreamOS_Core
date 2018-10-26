@@ -46,7 +46,7 @@ public class Installer {
 		wf.initiate(infod.getCertainFile("userpref_notifyInfoServerAccess"), "true");
 		wf.initiate(infod.getCertainFile("syspref_lockSystemPart"), "true");
 		CoreFilesUtility cfu = new CoreFilesUtility("InitialInstaller", true);
-		String[] infoFiles = cfu.getFile("$allinfopath").split("|||");
+		String[] infoFiles = cfu.getFile("$allinfopath").split("<SPLIT>");
 		wf.initiate(infoFiles[0], infod.getVersion());
 		wf.initiate(infoFiles[2], infod.getSystemBuild());
 		wf.initiate(infoFiles[3], infod.getVersionInDouble() + "");
