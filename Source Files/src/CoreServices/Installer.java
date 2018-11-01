@@ -1,6 +1,6 @@
 package CoreServices;
 import CoreFramework.CoreFilesUtility;
-import CoreFramework.InfoServer;
+import CoreFramework.InfoServeDaemon;
 import CoreModules.*;
 import Security.TCEngine;
 public class Installer {
@@ -10,7 +10,7 @@ public class Installer {
 	MakeDir md = new MakeDir();
 	ReadFile rf = new ReadFile();
 	WriteFile wf = new WriteFile();
-	InfoServer infod = new InfoServer("Installer");
+	InfoServeDaemon infod = new InfoServeDaemon("Installer");
 	String signCode = "serial:CBED2FD52CED6D52973A92C7AC393C83B9272A8BCAB0F4D0492DC33216A16CC1";
 	static String staticSignCode = "serial:CBED2FD52CED6D52973A92C7AC393C83B9272A8BCAB0F4D0492DC33216A16CC1";
 	public void init() {
@@ -20,7 +20,7 @@ public class Installer {
 		setupFiles(infod);
 		print("Setup complete.");
 	}
-	public void setupStorage(InfoServer infod) {
+	public void setupStorage(InfoServeDaemon infod) {
 		MakeDir makeDir = new MakeDir();
 		String path = infod.getUserDirectory() + infod.getDirectoryIdentifier() + infod.getManufacturer();
 		makeDir.initiate(path);
@@ -39,7 +39,7 @@ public class Installer {
 		path = infod.getCertainPath("als");
 		makeDir.initiate(path);
 	}
-	public void setupFiles(InfoServer infod) {
+	public void setupFiles(InfoServeDaemon infod) {
 		wf.initiate(infod.getPathFileLocation(), infod.getDefaultPath());
 		wf.initiate(infod.getCertainFile("syspref_debug"), "false");
 		wf.initiate(infod.getCertainFile("userpref_checkForUpdate"), "true");
@@ -47,6 +47,7 @@ public class Installer {
 		wf.initiate(infod.getCertainFile("syspref_lockSystemPart"), "true");
 		CoreFilesUtility cfu = new CoreFilesUtility("InitialInstaller", true);
 		String[] infoFiles = cfu.getFile("$allinfopath").split("<SPLIT>");
+		wf.initiate(cfu.getFile("lang"), "os.mainlang=en_us");
 		wf.initiate(infoFiles[0], infod.getVersion());
 		wf.initiate(infoFiles[2], infod.getSystemBuild());
 		wf.initiate(infoFiles[3], infod.getVersionInDouble() + "");

@@ -1,7 +1,7 @@
 package CoreServices;
 import java.io.File;
 
-import CoreFramework.InfoServer;
+import CoreFramework.InfoServeDaemon;
 import CoreModules.WriteFile;
 import Security.CheckTicket;
 import Security.PostSignatureCheck;
@@ -9,7 +9,7 @@ import Security.SignatureCheck;
 public class RunManager {
 	public boolean init(boolean chkticket, String apticket) {
 		print("RunManager entered.");
-		InfoServer infod = new InfoServer("RunManager");
+		InfoServeDaemon infod = new InfoServeDaemon("RunManager");
 		print("Checking initial run history...");
 		File file = new File(infod.getCertainFile("firstRunFlag"));
 		File pathloc = new File(infod.getPathFileLocation());
@@ -38,7 +38,7 @@ public class RunManager {
 		}
 		return disableSecurity;
 	}
-	public void setupFlag(InfoServer infod) {
+	public void setupFlag(InfoServeDaemon infod) {
 		String path = infod.getCertainFile("firstRunFlag");
 		WriteFile wf = new WriteFile();
 		wf.initiate(path, "");

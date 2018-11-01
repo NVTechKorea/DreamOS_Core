@@ -4,7 +4,7 @@ import CoreModules.DeleteFile;
 
 import java.util.Scanner;
 
-import CoreFramework.InfoServer;
+import CoreFramework.InfoServeDaemon;
 import CoreModules.ReadFile;
 import CoreModules.DownloadHelper;
 import InternalPackages.Shutdown;
@@ -21,7 +21,7 @@ public class UpdateHandler {
 				print("Getting information...");
 				boolean downgrade = false;
 				DownloadHelper dlhelper = new DownloadHelper();
-				InfoServer infod = new InfoServer("UpdateHandler");
+				InfoServeDaemon infod = new InfoServeDaemon("UpdateHandler");
 				String sUrl = "https://raw.githubusercontent.com/NVTechKorea/MessageEncryptor/master/VerificationData/Latest.signdoc";
 				path = infod.getCertainPath("var") + "Latest.signdoc";
 				dlhelper.initiate(sUrl, path, "getUpdateInfo");

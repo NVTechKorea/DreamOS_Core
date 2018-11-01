@@ -6,7 +6,7 @@ public class CoreFilesUtility {
 		}
 	}
 	public String getFile(String fileName) {
-		InfoServer infod = new InfoServer("CoreFilesUtility");
+		InfoServeDaemon infod = new InfoServeDaemon("CoreFilesUtility");
 		if(fileName.equals("updateReady.flag")) {
 			return infod.getCertainPath("var") + "updateReady.flag";
 		}else if(fileName.equals("lockTicket.lock")) {
@@ -19,6 +19,8 @@ public class CoreFilesUtility {
 			return infod.getCertainPath("system") + "versionNum.info";
 		}else if(fileName.equals("sysname.info")) {
 			return infod.getCertainPath("system") + "sysname.info";
+		}else if(fileName.equals("lang")) {
+			return infod.getCertainPath("var") + "mainlang.dlang";
 		}else if(fileName.equals("$allinfopath")) {
 			String dat = infod.getCertainPath("system") + "version.info" + "<SPLIT>" + infod.getCertainPath("system") + "build.info" + "<SPLIT>" + infod.getCertainPath("system") + "versionNum.info" + "<SPLIT>" + infod.getCertainPath("system") + "sysname.info";
 			return dat;

@@ -5,13 +5,13 @@ import CoreFramework.PanicHandler;
 import java.io.File;
 
 import CoreFramework.CoreFilesUtility;
-import CoreFramework.InfoServer;
+import CoreFramework.InfoServeDaemon;
 import InternalPackages.Shutdown;
 public class Boot {
 	public void init(boolean chkticket, String apticket, boolean override) {
 		try {
 			print("Launching InfoServer...");
-			InfoServer infod = new InfoServer("bootloader");
+			InfoServeDaemon infod = new InfoServeDaemon("bootloader");
 			print("Bootloader info:");
 			print("Name: Dynamic Neo Bootloader XII");
 			print("Version: 12.6");

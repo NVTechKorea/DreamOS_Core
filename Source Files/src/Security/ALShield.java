@@ -7,7 +7,7 @@ import java.util.Random;
 
 import CoreFramework.PanicHandler;
 import CoreFramework.GetInput;
-import CoreFramework.InfoServer;
+import CoreFramework.InfoServeDaemon;
 import CoreModules.WriteFile;
 import CoreModules.ReadFile;
 import CoreModules.DeleteFile;
@@ -16,7 +16,7 @@ import CoreModules.MakeDir;
 import InternalPackages.Shutdown;
 public class ALShield {
 	String version = "AbsoluteLevelShield-1.16";
-	InfoServer infod = new InfoServer("ALShield");
+	InfoServeDaemon infod = new InfoServeDaemon("ALShield");
 	PanicHandler ea = new PanicHandler();
 	WriteFile wf = new WriteFile();
 	ReadFile rf = new ReadFile();

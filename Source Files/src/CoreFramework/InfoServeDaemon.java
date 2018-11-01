@@ -6,9 +6,11 @@ import java.util.Scanner;
 import CoreModules.ReadFile;
 
 // Module Code: system.dreampackage.infoserver
-public class InfoServer{
+public class InfoServeDaemon{
+	public static String isdver = "1.0b1";
+	public static String isdsig = "proper";
 	Scanner input = new Scanner(System.in);
-	public InfoServer(String process){
+	public InfoServeDaemon(String process){
 		if(!process.equals("bootloader")) {
 			if(readPref()) {
 				if(!process.equals("PreferenceLoader")) {

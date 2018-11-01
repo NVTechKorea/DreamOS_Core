@@ -5,14 +5,14 @@ import CoreModules.DeleteFile;
 import CoreModules.DownloadHelper;
 import java.io.File;
 
-import CoreFramework.InfoServer;
+import CoreFramework.InfoServeDaemon;
 
 public class SignatureCheck {
 	private String signatureFileLoc = null;
 	private String signatureFileLink = null;
 	private String ver = null;
 	private String var = null;
-	InfoServer infod = new InfoServer("/system/Security/SignatureCheck");
+	InfoServeDaemon infod = new InfoServeDaemon("/system/Security/SignatureCheck");
 	public SignatureCheck() {
 		double version = infod.getVersionInDouble();
 		ver = version + "0";

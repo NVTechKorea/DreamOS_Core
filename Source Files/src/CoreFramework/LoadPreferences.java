@@ -3,7 +3,7 @@ package CoreFramework;
 import CoreModules.ReadFile;
 
 public class LoadPreferences {
-	static InfoServer infod = new InfoServer("PreferenceLoader");
+	static InfoServeDaemon infod = new InfoServeDaemon("PreferenceLoader");
 	static ReadFile rf = new ReadFile();
 	public static String loadSystemConfig(String option) {
 		String config = "NoSuchOption";

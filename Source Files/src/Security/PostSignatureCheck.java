@@ -4,13 +4,13 @@ import CoreModules.ReadFile;
 import CoreModules.DownloadHelper;
 import java.io.File;
 
-import CoreFramework.InfoServer;
+import CoreFramework.InfoServeDaemon;
 
 public class PostSignatureCheck {
 	private String signatureFileLoc = null;
 	private String signatureFileLink = null;
 	private String ver = null;
-	InfoServer infod = new InfoServer("/system/Security/PostSignatureCheck");
+	InfoServeDaemon infod = new InfoServeDaemon("/system/Security/PostSignatureCheck");
 	public void regvar() {
 		ver = infod.getVersionInDouble() + "0";
 		String path = infod.getCertainPath("var");

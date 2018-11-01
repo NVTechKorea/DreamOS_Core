@@ -4,14 +4,14 @@ import java.util.Random;
 import java.io.File;
 import java.util.UUID;
 
-import CoreFramework.InfoServer;
+import CoreFramework.InfoServeDaemon;
 import Security.TCEngine;
 import CoreModules.ReadFile;
 import CoreModules.WriteFile;
 
 public class CheckTicket {
 	public String init(boolean chkticket, String apticket) {
-		InfoServer infod = new InfoServer("/system/Security/CheckTicket");
+		InfoServeDaemon infod = new InfoServeDaemon("/system/Security/CheckTicket");
 		String path_bootTicket = infod.getCertainPath("system") + "authorizedBootTicket.aptic";
 		String path_uuid = infod.getCertainPath("system") + "machine_uuid.aptic";
 		File location = new File(path_uuid);

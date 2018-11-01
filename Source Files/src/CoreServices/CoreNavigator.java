@@ -4,7 +4,7 @@ import InternalPackages.Shutdown;
 import Security.*;
 
 import CoreFramework.GetInput;
-import CoreFramework.InfoServer;
+import CoreFramework.InfoServeDaemon;
 import CoreFramework.PanicHandler;
 import CoreFramework.LoadPreferences;
 import CoreModules.ReadFile;
@@ -44,7 +44,7 @@ public class CoreNavigator{
 			decryptToken = alshield.init();
 			prints("Getting file system ready...");
 			prints("Starting InfoServer...");
-			InfoServer infod = new InfoServer("navigator");
+			InfoServeDaemon infod = new InfoServeDaemon("navigator");
 			prints("Accessing request.server...");
 			prints("Getting current permission...");
 			PermissionManager.scan(permission);
@@ -56,7 +56,7 @@ public class CoreNavigator{
 			ea.initiate(e, "StartupNavigator", false);
 		}
 	}
-	public void readLockToken(InfoServer infod) {
+	public void readLockToken(InfoServeDaemon infod) {
 		String presetString = "read lockTicket.lock";
 		String[] presetArray = presetString.split(" ");
 		String parsable = read.init(presetArray, "digital", infod.getCertainPath("system"));
@@ -123,36 +123,36 @@ public class CoreNavigator{
 		}else if(command.startsWith("debugOption.allowIncomingSignals@localOS")) {
 			acceptIncomingSignals(security);
 		}else if(command.startsWith("debugOption.changeGlobalVariables@localOS")) {
-			if(security) {
-				String[] parse = command.split(" ");
-				if(parse.length==3) {
-					if(parse[1].equals("runFromApp")) {
-						boolean mod = false;
-						if(parse[2].equals("true")) {
-							mod = true;
-						}else if(parse[2].equals("false")){
-							mod = false;
-						}else {
-							
-						}
-						
-					}else if(parse[1].equals("runReset")) {
-						
-					}else if(parse[1].equals("checkUpdate")) {
-						
-					}else if(parse[1].equals("debug")) {
-						
-					}else if(parse[1].equals("lockSystemPart")) {
-						
-					}else if(parse[1].equals("notifyInfoServerAccess")) {
-						
-					}else if(parse[1].equals("superuser")) {
-						
-					}else {
-						
-					}
-				}
-			}
+//			if(security) {
+//				String[] parse = command.split(" ");
+//				if(parse.length==3) {
+//					if(parse[1].equals("runFromApp")) {
+//						boolean mod = false;
+//						if(parse[2].equals("true")) {
+//							mod = true;
+//						}else if(parse[2].equals("false")){
+//							mod = false;
+//						}else {
+//							
+//						}
+//						
+//					}else if(parse[1].equals("runReset")) {
+//						
+//					}else if(parse[1].equals("checkUpdate")) {
+//						
+//					}else if(parse[1].equals("debug")) {
+//						
+//					}else if(parse[1].equals("lockSystemPart")) {
+//						
+//					}else if(parse[1].equals("notifyInfoServerAccess")) {
+//						
+//					}else if(parse[1].equals("superuser")) {
+//						
+//					}else {
+//						
+//					}
+//				}
+//			}
 		}else if(command.startsWith("debugOption.restartNavigator@localOS")) {
 			if(runFromApp) {
 				String[] parse = command.split(" ");
@@ -205,7 +205,7 @@ public class CoreNavigator{
 		prints("DreamOS will now accept all the incoming data.");
 		prints("Generating container.");
 		String[] ar= {"commandSpace","packets"};
-		InfoServer infod = new InfoServer("communicator.reciever");
+		InfoServeDaemon infod = new InfoServeDaemon("communicator.reciever");
 		mkdir.init(ar, infod.getCertainPath("data"));
 		prints("Ready to accept.");
 		ReadFile rf = new ReadFile();

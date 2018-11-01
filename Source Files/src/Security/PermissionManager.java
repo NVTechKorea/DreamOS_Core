@@ -1,11 +1,11 @@
 package Security;
 
-import CoreFramework.InfoServer;
+import CoreFramework.InfoServeDaemon;
 import CoreModules.DeleteFile;
 import CoreModules.WriteFile;
 
 public class PermissionManager {
-	static InfoServer infod = new InfoServer("/system/Security/PermissionManager");
+	static InfoServeDaemon infod = new InfoServeDaemon("/system/Security/PermissionManager");
 	public static void scan(int permission) {
 		WriteFile wf = new WriteFile();
 		if(permission == 0) {

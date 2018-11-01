@@ -1,6 +1,6 @@
 package InternalPackages;
 
-import CoreFramework.InfoServer;
+import CoreFramework.InfoServeDaemon;
 import CoreModules.WriteFile;
 
 public class Chpref {
@@ -18,7 +18,7 @@ public class Chpref {
 
 	public boolean chpref(String targetOption, String value) {
 		boolean changed = false;
-		InfoServer infod = new InfoServer("/system/InternalPackages/Chpref");
+		InfoServeDaemon infod = new InfoServeDaemon("/system/InternalPackages/Chpref");
 		WriteFile wf = new WriteFile();
 		if (targetOption.equals("all")) {
 			print("This option is only applied to boolean options.");
