@@ -6,9 +6,9 @@ import java.util.Scanner;
 import CoreModules.ReadFile;
 
 // Module Code: system.dreampackage.infoserver
-public class InfoServer{
+public class InfoServeDaemon{
 	Scanner input = new Scanner(System.in);
-	public InfoServer(String process){
+	public InfoServeDaemon(String process){
 		System.out.println("InfoServerd [NOTIFY]: Process " + process + " accessed to InformationServer.");
 	}
 	public String getVersion(){

@@ -1,11 +1,12 @@
 package InternalPackages;
 
 import CoreModules.CheckFileExist;
+import CoreServices.LangManager;
 
 public class Cd {
 	public String init(String[] arg, String currentDir, boolean secure) {
 		if(arg.length!=2) {
-			print("Syntax error.");
+			print(LangManager.init("UNIVERSAL_SYNTAX_ERROR"));
 			return currentDir;
 		}else {
 			CheckFileExist cfe = new CheckFileExist();

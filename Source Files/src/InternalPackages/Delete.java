@@ -1,6 +1,7 @@
 package InternalPackages;
 import CoreModules.DeleteFile;
 import CoreModules.DeleteFolder;
+import CoreServices.LangManager;
 public class Delete {
 	public void init(String[] arg, String currentDir) {
 		if(arg.length==2) {
@@ -14,7 +15,7 @@ public class Delete {
 				print("No such arguments.");
 			}
 		}else {
-			print("Parsing error.");
+			print(LangManager.init("UNIVERSAL_SYNTAX_ERROR"));
 		}
 	}
 	public void print(String s) {

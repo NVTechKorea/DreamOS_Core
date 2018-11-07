@@ -6,7 +6,7 @@ import langpack.EN_us;
 import langpack.KR_ko;
 
 public class LangManager {
-	public String init(String message) {
+	public static String init(String message) {
 		CoreFilesUtility cfu = new CoreFilesUtility("LanguageManager", true);
 		ReadFile rf = new ReadFile();
 		if(rf.initiate(cfu.getFile("lang")).equals("os.mainlang=en_us")) {

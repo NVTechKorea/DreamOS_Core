@@ -51,7 +51,7 @@ public class CoreNavigator{
 			readLockToken(infod);
 			prints("Getting file system data...");
 			currentDir = infod.getCertainPath("data");
-			prints("Hello. Welcome to DreamOS.");
+			prints("Hello. Welcome to " + infod.getSystemName() + " " + infod.getVersion() + ".");
 		}catch(Exception e) {
 			ea.initiate(e, "StartupNavigator", false);
 		}

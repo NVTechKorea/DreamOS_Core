@@ -2,6 +2,7 @@ package InternalPackages;
 
 import CoreFramework.InfoServeDaemon;
 import CoreModules.WriteFile;
+import CoreServices.LangManager;
 
 public class Chpref {
 	public boolean init(String[] arg) {
@@ -10,7 +11,7 @@ public class Chpref {
 		if (leng == 3) {
 			changed = chpref(arg[1], arg[2]);
 		} else {
-			print("Wrong format!");
+			print(LangManager.init("UNIVERSAL_SYNTAX_ERROR"));
 			print("Usage: chpref [option name / all] [option]");
 		}
 		return changed;

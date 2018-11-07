@@ -1,5 +1,6 @@
 package InternalPackages;
 import CoreModules.ReadFile;
+import CoreServices.LangManager;
 import Security.TCEngine;
 
 public class Read {
@@ -15,7 +16,7 @@ public class Read {
 		}else if(arg.length == 2) {
 			return read(currentDir + arg[1], password);
 		}else {
-			print("Syntax error.");
+			print(LangManager.init("UNIVERSAL_SYNTAX_ERROR"));
 			return "";
 		}
 	}

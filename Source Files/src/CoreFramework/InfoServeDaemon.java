@@ -14,7 +14,7 @@ public class InfoServeDaemon{
 		if(!process.equals("bootloader")) {
 			if(readPref()) {
 				if(!process.equals("PreferenceLoader")) {
-					System.out.println("InfoServerd [NOTIFY]: Process " + process + " accessed to InformationServer.");
+					System.out.println("InfoServeDaemon [NOTIFY]: Process " + process + " accessed to InfoServeDaemon Data.");
 				}
 			}
 		}
@@ -114,7 +114,7 @@ public class InfoServeDaemon{
 	}
 	public void done() {}
 	public boolean checkConnection(String process) {
-		System.out.println("InfoServerd [NOTIFY]: Process " + process + " is requesting system information. Type yes to authorize, type n to reject.");
+		System.out.println("InfoServeDaemon [NOTIFY]: Process " + process + " is requesting system information. Type yes to authorize, type n to reject.");
 	    String i = input.nextLine();
 	    if(i.equals("yes")) {
 	    	return true;
