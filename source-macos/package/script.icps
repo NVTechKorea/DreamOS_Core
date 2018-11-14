@@ -1,0 +1,10 @@
+if [ ! -e /System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java ]; then
+	cd ~/Desktop
+	echo "Unable to continue installation: Java runtime is not installed." > dreamosinstallerror.txt
+	exit
+fi
+cd /incendi0/downloads/package/Payload/darwinpc
+sudo cp -r * /
+cd ~/Desktop
+echo "Complete: DreamOS is successfully installed." > dreamosinstall.txt
+exit

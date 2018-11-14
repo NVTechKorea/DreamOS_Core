@@ -1,0 +1,7 @@
+rm -r /private/dreamos/Data/_cache
+mkdir /private/dreamos/Data/_cache
+rm -r /private/dreamos/Boot
+mkdir /private/dreamos/Boot
+rm -r /private/dreamos/System/local.dream
+mkdir /private/dreamos/System/local.dream
+exit

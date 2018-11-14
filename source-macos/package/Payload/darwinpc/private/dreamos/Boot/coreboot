@@ -1,0 +1,6 @@
+mkdir /private/dreamos/Data/_cache
+mv /private/dreamos/System/local.dream/core.drp /private/dreamos/System/local.dream/core.jar
+java -jar /private/dreamos/System/local.dream/core.jar
+mv /private/dreamos/System/local.dream/core.jar /private/dreamos/System/local.dream/core.drp
+rm -r /private/dreamos/Data/_cache
+exit

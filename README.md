@@ -68,7 +68,7 @@ macOS 또는 Linux 에서 사용해주십시오.
 - MigrationHelper
 
 
-# DreamProjectGroup 에서 개발되지 않은 패키지
+# Dream Project Group 에서 개발되지 않은 패키지
 - commons-codec-1.11
   - https://commons.apache.org/proper/commons-codec/download_codec.cgi
 - EncryptTool
@@ -155,3 +155,13 @@ Test Beta 9 (build 18B081594UD-TB9)
   - [PANIC] Panic when access to file system in safeOS and recoveryOS after Core panic fall
   - [PANIC] Reading files in /storage/protection
   - [LOOP] When File Encryption Password is null or empty
+
+Test Beta 10 Non-Public Release (build 18B110199UD-TB10)
+- Modifications:
+    - System restructured
+- Security enhancements:
+    - TCEngine added
+        - Encrypts 3 times with AES 256
+    - File encryption service based on TCEngine
+    - File encryption with machine UUID
+    - All new security system - Absolute Level Shield based on TCEngine

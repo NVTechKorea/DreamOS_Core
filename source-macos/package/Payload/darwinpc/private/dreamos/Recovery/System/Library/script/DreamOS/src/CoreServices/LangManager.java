@@ -1,0 +1,22 @@
+package CoreServices;
+
+import CoreServices.CoreFilesList;
+import CoreModules.ReadFile;
+import Languages.EN_us;
+import Languages.KR_ko;
+
+public class LangManager {
+	public static String init(String message) {
+		ReadFile rf = new ReadFile();
+		if(rf.initiate(cfu.getFile("lang")).equals("os.mainlang=en_us")) {
+			EN_us lang = new EN_us();
+			return lang.init(message);
+		}else if(rf.initiate(cfu.getFile("lang")).equals("os.mainlang=ko_kr")) {
+			KR_ko lang = new KR_ko();
+			return lang.init(message);
+		}else {
+			EN_us lang = new EN_us();
+			return lang.init(message);
+		}
+	}
+}

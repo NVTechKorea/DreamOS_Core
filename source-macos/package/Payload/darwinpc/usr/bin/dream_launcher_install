@@ -1,0 +1,12 @@
+if [ -e ~/Desktop/dreamos_install_recovery ]; then
+	cp /private/dreamos/System/mnt/installer/bootfiles/failboot /private/dreamos/Boot
+else
+	cp /private/dreamos/System/mnt/installer/bootfiles/coreboot /private/dreamos/Boot
+fi
+cp /private/dreamos/System/mnt/installer/bootfiles/MNTROOT /private/dreamos/Boot
+find /private/dreamos/Recovery/System/Library/script -name *.java -depth -exec javac -cp /private/dreamos/Recovery/System/Library/dependencies/commons-codec-1.11.jar {} ;\
+find /private/dreamos/Recovery/System/Library/script -name *.class -depth -exec cp {} /private/dreamos/Recovery/System/Library/compile/ ;\
+find /private/dreamos/Recovery/System/Library/script -name *.class -depth -exec rm{} /private/dreamos/Recovery/System/Library/compile/ ;\
+jar cf /private/dreamos/System/local.dream/core.jar /private/dreamos/Recovery/System/Library/compile/*
+mv /private/dreamos/System/local.dream/core.jar /private/dreamos/System/local.dream/core.drp
+exit

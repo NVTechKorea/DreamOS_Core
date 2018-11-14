@@ -1,0 +1,14 @@
+if [ ! -e /private/dreamos/Boot/MNTROOT ]; then
+	echo "You need to install the bootloader first."
+	exit
+fi
+if [ -e /private/dreamos/Boot/coreboot ]; then
+	/private/dreamos/Boot/coreboot
+	exit
+elif [ -e /private/dreamos/Boot/failboot ]; then
+	mv /private/dreamos/Recovery/System/Library/recovery.dream/core.drp /private/dreamos/Recovery/System/Library/recovery.dream/core.jar
+	java -jar /private/dreamos/Recovery/System/Library/recovery.dream/core.jar
+	mv /private/dreamos/Recovery/System/Library/recovery.dream/core.jar /private/dreamos/Recovery/System/Library/recovery.dream/core.drp
+	exit
+fi
+exit

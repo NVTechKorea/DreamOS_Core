@@ -1,0 +1,5 @@
+echo "Uninstalling DreamOS..."
+sudo rm -r /private/dreamos
+sudo rm /usr/bin/dream_clean_runenv
+sudo rm /usr/bin/dream_set_powerstat--1
+sudo rm /usr/bin/dream_launcher_install
