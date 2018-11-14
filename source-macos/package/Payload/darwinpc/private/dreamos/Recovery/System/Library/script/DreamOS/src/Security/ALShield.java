@@ -1,6 +1,4 @@
 package Security;
-import CoreServices.Boot;
-
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Random;
@@ -9,6 +7,7 @@ import CoreFramework.PanicHandler;
 import CoreFramework.GetInput;
 import CoreFramework.InfoServeDaemon;
 import CoreModules.WriteFile;
+import CoreServices.Boot;
 import CoreModules.ReadFile;
 import CoreModules.DeleteFile;
 import CoreModules.MakeDir;

@@ -8,6 +8,26 @@ import CoreModules.ReadFile;
 public class InfoStorageWriter{
 	public static String isdver = "1.0b2";
 	public static String isdsig = "proper";
+	public static void write() {
+		
+	}
+	public static String getDefaultPath() {
+		String path = "";
+		if(System.getProperty("os.name").toLowerCase().equals("windows")){
+			path = "";
+		}else{
+			path = "/private/dreamos/";
+		}
+		return path;
+	}
+	public static String getPathFileLocation() {
+		return getDefaultPath() + "System" + getDirectoryIdentifier() + "inf" + getDirectoryIdentifier() + "rootfs";
+	}
+	
+	
+	
+	
+	
 	public static String getVersion(){
 		done();
 		return "Beta10_CoreOS";
@@ -99,16 +119,6 @@ public class InfoStorageWriter{
 		return s;
 	}
 	public static void done() {}
-	public static String getDefaultPath() {
-		String path = "";
-		if(System.getProperty("os.name").toLowerCase().equals("windows")){
-			path = "";
-		}else{
-			path = "/private/dreamos/";
-		}
-		return path;
-	}
-	public static String getPathFileLocation() {
-		return getDefaultPath() + "System" + getDirectoryIdentifier() + "inf" + getDirectoryIdentifier() + "rootfs";
-	}
+	
+	
 }

@@ -12,7 +12,6 @@ public class SignatureCheck {
 	private String signatureFileLink = null;
 	private String ver = null;
 	private String var = null;
-	InfoServeDaemon infod = new InfoServeDaemon("/system/Security/SignatureCheck");
 	public SignatureCheck() {
 		double version = infod.getVersionInDouble();
 		ver = version + "0";
