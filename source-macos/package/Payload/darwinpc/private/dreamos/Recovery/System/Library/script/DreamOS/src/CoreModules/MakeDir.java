@@ -6,7 +6,7 @@ package CoreModules;
 import java.io.*;
 import java.util.Scanner;
 
-import CoreFramework.PanicHandler;
+import CoreServices.PanicHandler;
 public class MakeDir{
 	public MakeDir(){}
 	public void initiate(String path){

@@ -1,4 +1,4 @@
-package CoreFramework;
+package CoreServices;
 
 public class InfoStorage {
 	public static String version = "";
@@ -6,6 +6,6 @@ public class InfoStorage {
 	public static String build = "";
 	public static String manufacture = "";
 	public static String masterOS = "";
-	
+	public static String dirid = "";
 }
 

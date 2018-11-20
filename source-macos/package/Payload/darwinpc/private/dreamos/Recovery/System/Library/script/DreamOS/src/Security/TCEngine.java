@@ -1,5 +1,5 @@
 package Security;
-import CoreFramework.PanicHandler;
+import CoreServices.PanicHandler;
 public class TCEngine {
 	boolean silence = false;
 	public void silence(boolean gotSilence) {

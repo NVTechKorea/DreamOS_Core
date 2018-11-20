@@ -10,7 +10,7 @@ public class Chpref {
 		if (leng == 3) {
 			changed = chpref(arg[1], arg[2]);
 		} else {
-			print(LangManager.init("UNIVERSAL_SYNTAX_ERROR"));
+			print("Wrong syntax.");
 			print("Usage: chpref [option name / all] [option]");
 		}
 		return changed;

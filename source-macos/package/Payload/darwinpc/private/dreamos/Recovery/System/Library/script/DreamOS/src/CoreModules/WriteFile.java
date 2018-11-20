@@ -6,12 +6,16 @@ package CoreModules;
 import java.io.*;
 import java.util.Scanner;
 
-import CoreFramework.PanicHandler;
+import CoreServices.PanicHandler;
+import Security.TCEngine;
 public class WriteFile{
 	public WriteFile(){}
-	public void initiate(String path, String contents){
+	public void initiate(String path, String contents, String decryptToken){
 		String process = "Writing file: " + path;
 		Writer writer = null;
+		TCEngine tce = new TCEngine ();
+		tce.silence(true);
+		contents = tce.encrypt(contents, decryptToken);
 		try{
 			writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), "utf-8"));
 			writer.write(contents);

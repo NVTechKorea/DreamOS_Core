@@ -1,4 +1,4 @@
-package CoreFramework;
+package CoreServices;
 import commands.Shutdown;
 // Module Code: system.dreampackage.erroranalyzer
 public class PanicHandler{

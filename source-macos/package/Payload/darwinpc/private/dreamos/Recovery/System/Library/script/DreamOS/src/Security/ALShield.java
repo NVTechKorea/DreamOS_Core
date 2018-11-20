@@ -3,11 +3,11 @@ import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Random;
 
-import CoreFramework.PanicHandler;
 import CoreFramework.GetInput;
 import CoreFramework.InfoServeDaemon;
 import CoreModules.WriteFile;
 import CoreServices.Boot;
+import CoreServices.PanicHandler;
 import CoreModules.ReadFile;
 import CoreModules.DeleteFile;
 import CoreModules.MakeDir;

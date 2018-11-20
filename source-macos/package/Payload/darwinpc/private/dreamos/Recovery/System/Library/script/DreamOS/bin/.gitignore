@@ -1,8 +1,5 @@
 /CoreFramework/
-/CoreModules/
-/CoreServices/
-/Interfaces/
-/Languages/
 /Launch/
+/CoreServices/
+/CoreModules/
 /Security/
-/commands/
