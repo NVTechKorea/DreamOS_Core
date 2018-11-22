@@ -3,10 +3,10 @@ import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Random;
 
+import Boot;
 import CoreFramework.GetInput;
 import CoreFramework.InfoServeDaemon;
 import CoreModules.WriteFile;
-import CoreServices.Boot;
 import CoreServices.PanicHandler;
 import CoreModules.ReadFile;
 import CoreModules.DeleteFile;
@@ -15,7 +15,6 @@ import CoreModules.MakeDir;
 import commands.Shutdown;
 public class ALShield {
 	String version = "AbsoluteLevelShield-1.16";
-	InfoServeDaemon infod = new InfoServeDaemon("ALShield");
 	PanicHandler ea = new PanicHandler();
 	WriteFile wf = new WriteFile();
 	ReadFile rf = new ReadFile();

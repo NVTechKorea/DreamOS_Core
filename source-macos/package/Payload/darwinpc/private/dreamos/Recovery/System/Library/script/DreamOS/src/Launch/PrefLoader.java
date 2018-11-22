@@ -1,7 +1,7 @@
 package Launch;
 import CoreModules.ReadFile;
 import CoreServices.InfoStorage;
-public class InfoLoader {
+public class PrefLoader {
 	public static String version = "1.00";
 	String rootfs = "";
 	String infodir = "";
