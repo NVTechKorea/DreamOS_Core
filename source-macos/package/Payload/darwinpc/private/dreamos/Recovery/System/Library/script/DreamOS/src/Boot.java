@@ -27,8 +27,9 @@ public class Boot {
 		print("!!!BOOTLOADER IS IN LEGACY MODE, NOT RECOMMENDED!!!");
 		print("!!!BLOB WILL NOT BE SCANNED AND SECURITY WILL BE DISABLED!!!");
 		print("Loading FS...");
-		printfatal("");
-		print("Scanning corefiles...");
+		printfatal("Unrecognized File System!");
+		printfatal("osload.d returned: BOOT_UNSUPPORTED_ACCESS");
+		bootpanic();
 	}
 	public void print(String s) {
 		System.out.println("[INFO] BOOT: " + s);
@@ -48,6 +49,7 @@ public class Boot {
 		printfatalhandle("Caught error data will be recorded into /data/db/errorlog-[time].log.");
 		printfatalhandle("Error logs will not be encrypted, thus if you want to read them, use -nodecrypt option.");
 		try {
+			//Write Log
 			printfatalhandle("Error log record was successful.");
 			printfatalhandle("The bootloader will now try entering safemode.");
 			//Load SafeOS
